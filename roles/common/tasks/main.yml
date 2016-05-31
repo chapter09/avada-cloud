@@ -1,0 +1,53 @@
+# vim:ft=ansible:
+---
+# This Playbook runs all the common plays in the deployment
+
+- name: Create the Downloads directory for all machines
+  command: mkdir ~/Downloads
+
+- name: Install Oracle Java 8 install python-software-properties
+  apt: name=python-software-properties state=latest
+
+- name: Install Oracle Java 8 add repo
+  apt_repository: repo='ppa:webupd8team/java'
+
+- name: Install Oracle Java 8 update apt cache
+  apt: update_cache=yes
+
+- name: Install Oracle Java 8
+  apt: name=oracle-java8-installer state=present
+
+- name: Setup JAVA_HOME
+  shell: "echo export JAVA_HOME=/usr/lib/jvm/java-8-oracle/ >> ~/.bashrc"
+
+- name: Setup PATH
+  shell: "export PATH=$PATH:/usr/lib/jvm/java-8-oracle/jre/bin/ >> ~/.bashrc"
+
+- name: Install iostate
+  apt: name=sysstat state=latest
+
+- name: Create a directory for JvmTop
+  command: mkdir ~/jvmtop
+
+- name: Download JvmTop
+  command: wget -c https://github.com/patric-r/jvmtop/releases/download/0.8.0/jvmtop-0.8.0.tar.gz -P ~/Downloads
+
+- name: Extract JvmTop
+  command: tar -xf ~/Downloads/jvmtop-0.8.0.tar.gz -C ~/jvmtop/
+
+- name: Make JvmTop executable
+  command: chmod +x ~/jvmtop/jvmtop.sh
+
+- name: Install dependencies for nethogs
+  apt: name={{item}}
+  with_items:
+    - build-essential
+    - libncurses5-dev
+    - libpcap-dev
+  
+- name: Compile nethogs
+  command: chdir=~/Downloads/nethogs make
+
+- name: Install nethogs
+  command: chdir=~/Downloads/nethogs sudo make install
+

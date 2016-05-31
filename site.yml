@@ -1,0 +1,11 @@
+---
+# This Playbook will deploy the whole Spark + Hive + HDFF on the cluster
+
+- hosts: all
+  roles:
+  - role: common
+
+- hosts: master_node
+  roles:
+  - role: master
+
