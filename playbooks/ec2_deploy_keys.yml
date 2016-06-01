@@ -1,0 +1,22 @@
+# vim:ft=ansible
+---
+# This Playbook will import keypairs to all regions of EC2
+
+- hosts: localhost
+  tasks:
+  - name: Create ec2 key pair
+    ec2_key:
+      name: hao-savi-rsa
+      region: "{{ item }}"
+      key_material: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDwbjHmba7dp4AifBKOuTBakO9KEE6Kd8I3d16jsS1sDYW0b0C6XcLrCYyeaMhMj3CMGVQRgvIEJ7Tc8yefQfvBGXWPXnRQF2kXD+SfBDyQYutnHF6dPGSazdFHGCWhL+ND4vITy9DxG8+fL7QlnKySCnaLapirqy69N0el2mJpOm8BbEshVn/Lb7mpKdrziRiYeGVvB1LTes9y/+X90cwSD4qD1OQHWZdOQkCX8ov/6sswj9nQZoC87TfBiAGaCmI1GHEzip0xuBAd+kxVxsfWpZoNk8a7VSK5sUfl7lnhEtpP1wfc+Rd13QWYTgfs3Jwhy0SL+EdM15Lutm2kodLh hao@hao-yarn-2'
+    with_items:
+      - us-east-1
+      - us-west-1
+      - us-west-2
+      - eu-west-1
+      - eu-central-1
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-southeast-1
+      - ap-southeast-2
+      - sa-east-1

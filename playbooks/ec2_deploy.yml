@@ -2,10 +2,17 @@
 ---
 # This playbook is used to import key pairs and launch multiple EC2 instances
 
-- name: create ec2 key pair
+vars:
+  keypair: hao-savi-rsa
+  security_group: default
+
+
+- name: Create ec2 key pair
   ec2_key:
-    name: hao-savi-1
+    name: hao-savi-rsa
     key_material: "{{ item }}"
   with_file: ~/.ssh/id_rsa.pub
 
-
+- name: Launch instances
+  ec2: keypair=
+  register: ec2
