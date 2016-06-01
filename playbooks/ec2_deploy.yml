@@ -1,0 +1,11 @@
+# vim:ft=ansible:
+---
+# This playbook is used to import key pairs and launch multiple EC2 instances
+
+- name: create ec2 key pair
+  ec2_key:
+    name: hao-savi-1
+    key_material: "{{ item }}"
+  with_file: ~/.ssh/id_rsa.pub
+
+

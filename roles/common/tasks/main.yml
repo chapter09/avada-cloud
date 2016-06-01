@@ -2,6 +2,9 @@
 ---
 # This Playbook runs all the common plays in the deployment
 
+- name: Init locale for new instance
+  apt: name=language-pack-en
+
 - name: Create the Downloads directory for all machines
   command: mkdir ~/Downloads
 
@@ -39,7 +42,7 @@
   command: chmod +x ~/jvmtop/jvmtop.sh
 
 - name: Install dependencies for nethogs
-  apt: name={{item}}
+  apt: name={{ item }}
   with_items:
     - build-essential
     - libncurses5-dev

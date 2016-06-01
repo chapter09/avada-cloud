@@ -1,10 +1,18 @@
 ---
 # This Playbook builds Spark, HDFS and Hive on Master Node
 
-- name: Download all depended source code
-  command: wget -c {{ item }} -P ~/Downloads
-  with_items:
-    - http://mirror.csclub.uwaterloo.ca/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
-    - http://apache.mirror.gtcomm.net/hadoop/common/hadoop-2.6.4/hadoop-2.6.4-src.tar.gz
-    - http://apache.mirror.gtcomm.net/spark/spark-1.6.1/spark-1.6.1.tgz
+- name: Copy Spark, HDFS and Hive code base to Master Node
+  copy: src=spark_hdfs_hive.tar.gz dest=~/Downloads 
 
+- name: Extract code bases to HOME
+  command: tar -xf ~/Downloads/spark_hdfs_hive.tar.gz -C ~/
+
+- name: Update configuration file
+  
+
+- name: Launch HDFS, Spark
+  command: chdir={{ item.dir }} {{ item.cmd }}
+  with_items:
+    - { dir: '', cmd: '' }
+    - { dir: '', cmd: '' }
+    - { dir: '', cmd: '' }
