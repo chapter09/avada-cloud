@@ -32,6 +32,6 @@
         module: ec2
         instance_ids: '{{ item.id }}'
         region: '{{ item.region }}'
-        state: 'absent'
+        state: '{{ action }}'
       with_flattened:
         - "{{ instance_list }}"
