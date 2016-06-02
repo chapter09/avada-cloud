@@ -1,11 +1,11 @@
 # vim:ft=ansible:
 ---
 
-- hosts: localhost
+- hosts: security_group_default
   gather_facts: false
   connection: local
   tasks:
-    - name: Stop master
+    - name: Terminate master
       local_action:
         module: ec2
         instance_tags:
@@ -13,7 +13,7 @@
         region: 'us-east-1'
         state: 'stopped'
 
-    - name: Stop all workers in all regisons
+    - name: Terminate all workers in all regisons
       local_action:
         module: ec2
         instance_tags:
