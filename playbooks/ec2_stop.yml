@@ -1,0 +1,25 @@
+# vim:ft=ansible:
+---
+# This playbook is used to stop EC2 instances
+
+- name: Stop all EC2 instances 
+  hosts: security_group_Avada
+  connection: local
+  gather_facts: False
+  vars:
+    keypair: hao-savi-rsa
+    security_group: default
+    instance_type: m3.2xlarge
+    vm_num: 1
+
+  tasks:
+    - name: show ec2_id
+      debug: msg='{{ ec2_id }}'
+
+    - name: Stop instance "{{ ec2_id }}"
+      ec2: 
+        instance_ids: "{{ ec2_id }}"
+        region: "{{ ec2_region }}"
+        state: stopped
+        wait: True
+
