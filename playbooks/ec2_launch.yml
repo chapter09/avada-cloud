@@ -10,7 +10,6 @@
     instance_type: t2.micro
     vm_num: 2
 
-
   tasks:
     - name: Launch a master instance
       ec2:
