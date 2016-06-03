@@ -1,8 +1,8 @@
 [master]
-{{ master.public_ip }} # {{ master.region }}
+{{ master.public_ip }} \t # {{ master.region }}
 
 [worker]
 {% for region in worker_list %}
 {% for worker in region %}
-{{ worker.public_ip }} # {{ worker.region }}
+{{ worker.public_ip }} \t # {{ worker.region }}
 {% endfor %}{% endfor %}
