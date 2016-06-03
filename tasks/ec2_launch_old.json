@@ -1,0 +1,1130 @@
+
+PLAY [localhost] ***************************************************************
+
+TASK [setup] *******************************************************************
+ok: [localhost]
+
+TASK [Launch a master instance] ************************************************
+changed: [localhost]
+
+TASK [debug] *******************************************************************
+ok: [localhost] => {
+    "msg": {
+        "changed": true, 
+        "instance_ids": [
+            "i-344896a8"
+        ], 
+        "instances": [
+            {
+                "ami_launch_index": "0", 
+                "architecture": "x86_64", 
+                "block_device_mapping": {}, 
+                "dns_name": "", 
+                "ebs_optimized": false, 
+                "groups": {
+                    "sg-a2a722d9": "hao"
+                }, 
+                "hypervisor": "xen", 
+                "id": "i-344896a8", 
+                "image_id": "ami-fce3c696", 
+                "instance_type": "t2.micro", 
+                "kernel": null, 
+                "key_name": "hao-savi-rsa", 
+                "launch_time": "2016-06-03T01:12:22.000Z", 
+                "placement": "us-east-1d", 
+                "private_dns_name": "ip-172-31-50-209.ec2.internal", 
+                "private_ip": "172.31.50.209", 
+                "public_dns_name": "", 
+                "public_ip": null, 
+                "ramdisk": null, 
+                "region": "us-east-1", 
+                "root_device_name": "/dev/sda1", 
+                "root_device_type": "ebs", 
+                "state": "pending", 
+                "state_code": 0, 
+                "tags": {
+                    "Name": "master-hao"
+                }, 
+                "tenancy": "default", 
+                "virtualization_type": "hvm"
+            }
+        ], 
+        "tagged_instances": []
+    }
+}
+
+TASK [Launch worker instances] *************************************************
+changed: [localhost] => (item={u'region': u'us-east-1', u'image': u'ami-fce3c696'})
+changed: [localhost] => (item={u'region': u'us-west-1', u'image': u'ami-06116566'})
+changed: [localhost] => (item={u'region': u'us-west-2', u'image': u'ami-9abea4fb'})
+changed: [localhost] => (item={u'region': u'eu-west-1', u'image': u'ami-f95ef58a'})
+changed: [localhost] => (item={u'region': u'eu-central-1', u'image': u'ami-87564feb'})
+changed: [localhost] => (item={u'region': u'ap-northeast-1', u'image': u'ami-a21529cc'})
+changed: [localhost] => (item={u'region': u'ap-northeast-2', u'image': u'ami-09dc1267'})
+changed: [localhost] => (item={u'region': u'ap-southeast-1', u'image': u'ami-25c00c46'})
+changed: [localhost] => (item={u'region': u'ap-southeast-2', u'image': u'ami-6c14310f'})
+changed: [localhost] => (item={u'region': u'sa-east-1', u'image': u'ami-0fb83963'})
+
+TASK [debug] *******************************************************************
+ok: [localhost] => {
+    "msg": {
+        "changed": true, 
+        "msg": "All items completed", 
+        "results": [
+            {
+                "_ansible_item_result": true, 
+                "_ansible_no_log": false, 
+                "changed": true, 
+                "instance_ids": [
+                    "i-5f4b95c3"
+                ], 
+                "instances": [
+                    {
+                        "ami_launch_index": "0", 
+                        "architecture": "x86_64", 
+                        "block_device_mapping": {
+                            "/dev/sda1": {
+                                "delete_on_termination": true, 
+                                "status": "attached", 
+                                "volume_id": "vol-a90f6679"
+                            }
+                        }, 
+                        "dns_name": "ec2-52-201-225-222.compute-1.amazonaws.com", 
+                        "ebs_optimized": false, 
+                        "groups": {
+                            "sg-a2a722d9": "hao"
+                        }, 
+                        "hypervisor": "xen", 
+                        "id": "i-5f4b95c3", 
+                        "image_id": "ami-fce3c696", 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "launch_time": "2016-06-03T01:12:24.000Z", 
+                        "placement": "us-east-1d", 
+                        "private_dns_name": "ip-172-31-53-134.ec2.internal", 
+                        "private_ip": "172.31.53.134", 
+                        "public_dns_name": "ec2-52-201-225-222.compute-1.amazonaws.com", 
+                        "public_ip": "52.201.225.222", 
+                        "ramdisk": null, 
+                        "region": "us-east-1", 
+                        "root_device_name": "/dev/sda1", 
+                        "root_device_type": "ebs", 
+                        "state": "running", 
+                        "state_code": 16, 
+                        "tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "tenancy": "default", 
+                        "virtualization_type": "hvm"
+                    }
+                ], 
+                "invocation": {
+                    "module_args": {
+                        "assign_public_ip": false, 
+                        "aws_access_key": null, 
+                        "aws_secret_key": null, 
+                        "count": 1, 
+                        "count_tag": null, 
+                        "ebs_optimized": false, 
+                        "ec2_url": null, 
+                        "exact_count": null, 
+                        "group": [
+                            "hao"
+                        ], 
+                        "group_id": null, 
+                        "id": null, 
+                        "image": "ami-fce3c696", 
+                        "instance_ids": null, 
+                        "instance_profile_name": null, 
+                        "instance_tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "keypair": "hao-savi-rsa", 
+                        "monitoring": false, 
+                        "network_interfaces": null, 
+                        "placement_group": null, 
+                        "private_ip": null, 
+                        "profile": null, 
+                        "ramdisk": null, 
+                        "region": "us-east-1", 
+                        "security_token": null, 
+                        "source_dest_check": true, 
+                        "spot_launch_group": null, 
+                        "spot_price": null, 
+                        "spot_type": "one-time", 
+                        "spot_wait_timeout": "600", 
+                        "state": "present", 
+                        "tenancy": "default", 
+                        "termination_protection": false, 
+                        "user_data": null, 
+                        "validate_certs": true, 
+                        "volumes": null, 
+                        "vpc_subnet_id": null, 
+                        "wait": true, 
+                        "wait_timeout": "300", 
+                        "zone": null
+                    }, 
+                    "module_name": "ec2"
+                }, 
+                "item": {
+                    "image": "ami-fce3c696", 
+                    "region": "us-east-1"
+                }, 
+                "tagged_instances": []
+            }, 
+            {
+                "_ansible_item_result": true, 
+                "_ansible_no_log": false, 
+                "changed": true, 
+                "instance_ids": [
+                    "i-e2f99d57"
+                ], 
+                "instances": [
+                    {
+                        "ami_launch_index": "0", 
+                        "architecture": "x86_64", 
+                        "block_device_mapping": {
+                            "/dev/sda1": {
+                                "delete_on_termination": true, 
+                                "status": "attached", 
+                                "volume_id": "vol-59fa1ae5"
+                            }
+                        }, 
+                        "dns_name": "ec2-52-53-211-68.us-west-1.compute.amazonaws.com", 
+                        "ebs_optimized": false, 
+                        "groups": {
+                            "sg-a6e957c2": "hao"
+                        }, 
+                        "hypervisor": "xen", 
+                        "id": "i-e2f99d57", 
+                        "image_id": "ami-06116566", 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "launch_time": "2016-06-03T01:13:17.000Z", 
+                        "placement": "us-west-1a", 
+                        "private_dns_name": "ip-172-31-5-191.us-west-1.compute.internal", 
+                        "private_ip": "172.31.5.191", 
+                        "public_dns_name": "ec2-52-53-211-68.us-west-1.compute.amazonaws.com", 
+                        "public_ip": "52.53.211.68", 
+                        "ramdisk": null, 
+                        "region": "us-west-1", 
+                        "root_device_name": "/dev/sda1", 
+                        "root_device_type": "ebs", 
+                        "state": "running", 
+                        "state_code": 16, 
+                        "tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "tenancy": "default", 
+                        "virtualization_type": "hvm"
+                    }
+                ], 
+                "invocation": {
+                    "module_args": {
+                        "assign_public_ip": false, 
+                        "aws_access_key": null, 
+                        "aws_secret_key": null, 
+                        "count": 1, 
+                        "count_tag": null, 
+                        "ebs_optimized": false, 
+                        "ec2_url": null, 
+                        "exact_count": null, 
+                        "group": [
+                            "hao"
+                        ], 
+                        "group_id": null, 
+                        "id": null, 
+                        "image": "ami-06116566", 
+                        "instance_ids": null, 
+                        "instance_profile_name": null, 
+                        "instance_tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "keypair": "hao-savi-rsa", 
+                        "monitoring": false, 
+                        "network_interfaces": null, 
+                        "placement_group": null, 
+                        "private_ip": null, 
+                        "profile": null, 
+                        "ramdisk": null, 
+                        "region": "us-west-1", 
+                        "security_token": null, 
+                        "source_dest_check": true, 
+                        "spot_launch_group": null, 
+                        "spot_price": null, 
+                        "spot_type": "one-time", 
+                        "spot_wait_timeout": "600", 
+                        "state": "present", 
+                        "tenancy": "default", 
+                        "termination_protection": false, 
+                        "user_data": null, 
+                        "validate_certs": true, 
+                        "volumes": null, 
+                        "vpc_subnet_id": null, 
+                        "wait": true, 
+                        "wait_timeout": "300", 
+                        "zone": null
+                    }, 
+                    "module_name": "ec2"
+                }, 
+                "item": {
+                    "image": "ami-06116566", 
+                    "region": "us-west-1"
+                }, 
+                "tagged_instances": []
+            }, 
+            {
+                "_ansible_item_result": true, 
+                "_ansible_no_log": false, 
+                "changed": true, 
+                "instance_ids": [
+                    "i-87c92828"
+                ], 
+                "instances": [
+                    {
+                        "ami_launch_index": "0", 
+                        "architecture": "x86_64", 
+                        "block_device_mapping": {
+                            "/dev/sda1": {
+                                "delete_on_termination": true, 
+                                "status": "attached", 
+                                "volume_id": "vol-b5613f03"
+                            }
+                        }, 
+                        "dns_name": "ec2-52-40-213-23.us-west-2.compute.amazonaws.com", 
+                        "ebs_optimized": false, 
+                        "groups": {
+                            "sg-3b8c4f5d": "hao"
+                        }, 
+                        "hypervisor": "xen", 
+                        "id": "i-87c92828", 
+                        "image_id": "ami-9abea4fb", 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "launch_time": "2016-06-03T01:13:40.000Z", 
+                        "placement": "us-west-2b", 
+                        "private_dns_name": "ip-172-31-40-204.us-west-2.compute.internal", 
+                        "private_ip": "172.31.40.204", 
+                        "public_dns_name": "ec2-52-40-213-23.us-west-2.compute.amazonaws.com", 
+                        "public_ip": "52.40.213.23", 
+                        "ramdisk": null, 
+                        "region": "us-west-2", 
+                        "root_device_name": "/dev/sda1", 
+                        "root_device_type": "ebs", 
+                        "state": "running", 
+                        "state_code": 16, 
+                        "tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "tenancy": "default", 
+                        "virtualization_type": "hvm"
+                    }
+                ], 
+                "invocation": {
+                    "module_args": {
+                        "assign_public_ip": false, 
+                        "aws_access_key": null, 
+                        "aws_secret_key": null, 
+                        "count": 1, 
+                        "count_tag": null, 
+                        "ebs_optimized": false, 
+                        "ec2_url": null, 
+                        "exact_count": null, 
+                        "group": [
+                            "hao"
+                        ], 
+                        "group_id": null, 
+                        "id": null, 
+                        "image": "ami-9abea4fb", 
+                        "instance_ids": null, 
+                        "instance_profile_name": null, 
+                        "instance_tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "keypair": "hao-savi-rsa", 
+                        "monitoring": false, 
+                        "network_interfaces": null, 
+                        "placement_group": null, 
+                        "private_ip": null, 
+                        "profile": null, 
+                        "ramdisk": null, 
+                        "region": "us-west-2", 
+                        "security_token": null, 
+                        "source_dest_check": true, 
+                        "spot_launch_group": null, 
+                        "spot_price": null, 
+                        "spot_type": "one-time", 
+                        "spot_wait_timeout": "600", 
+                        "state": "present", 
+                        "tenancy": "default", 
+                        "termination_protection": false, 
+                        "user_data": null, 
+                        "validate_certs": true, 
+                        "volumes": null, 
+                        "vpc_subnet_id": null, 
+                        "wait": true, 
+                        "wait_timeout": "300", 
+                        "zone": null
+                    }, 
+                    "module_name": "ec2"
+                }, 
+                "item": {
+                    "image": "ami-9abea4fb", 
+                    "region": "us-west-2"
+                }, 
+                "tagged_instances": []
+            }, 
+            {
+                "_ansible_item_result": true, 
+                "_ansible_no_log": false, 
+                "changed": true, 
+                "instance_ids": [
+                    "i-9c58c010"
+                ], 
+                "instances": [
+                    {
+                        "ami_launch_index": "0", 
+                        "architecture": "x86_64", 
+                        "block_device_mapping": {
+                            "/dev/sda1": {
+                                "delete_on_termination": true, 
+                                "status": "attached", 
+                                "volume_id": "vol-7d4d50c3"
+                            }
+                        }, 
+                        "dns_name": "ec2-52-49-167-74.eu-west-1.compute.amazonaws.com", 
+                        "ebs_optimized": false, 
+                        "groups": {
+                            "sg-c3972ba4": "hao"
+                        }, 
+                        "hypervisor": "xen", 
+                        "id": "i-9c58c010", 
+                        "image_id": "ami-f95ef58a", 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "launch_time": "2016-06-03T01:13:59.000Z", 
+                        "placement": "eu-west-1b", 
+                        "private_dns_name": "ip-172-31-40-28.eu-west-1.compute.internal", 
+                        "private_ip": "172.31.40.28", 
+                        "public_dns_name": "ec2-52-49-167-74.eu-west-1.compute.amazonaws.com", 
+                        "public_ip": "52.49.167.74", 
+                        "ramdisk": null, 
+                        "region": "eu-west-1", 
+                        "root_device_name": "/dev/sda1", 
+                        "root_device_type": "ebs", 
+                        "state": "running", 
+                        "state_code": 16, 
+                        "tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "tenancy": "default", 
+                        "virtualization_type": "hvm"
+                    }
+                ], 
+                "invocation": {
+                    "module_args": {
+                        "assign_public_ip": false, 
+                        "aws_access_key": null, 
+                        "aws_secret_key": null, 
+                        "count": 1, 
+                        "count_tag": null, 
+                        "ebs_optimized": false, 
+                        "ec2_url": null, 
+                        "exact_count": null, 
+                        "group": [
+                            "hao"
+                        ], 
+                        "group_id": null, 
+                        "id": null, 
+                        "image": "ami-f95ef58a", 
+                        "instance_ids": null, 
+                        "instance_profile_name": null, 
+                        "instance_tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "keypair": "hao-savi-rsa", 
+                        "monitoring": false, 
+                        "network_interfaces": null, 
+                        "placement_group": null, 
+                        "private_ip": null, 
+                        "profile": null, 
+                        "ramdisk": null, 
+                        "region": "eu-west-1", 
+                        "security_token": null, 
+                        "source_dest_check": true, 
+                        "spot_launch_group": null, 
+                        "spot_price": null, 
+                        "spot_type": "one-time", 
+                        "spot_wait_timeout": "600", 
+                        "state": "present", 
+                        "tenancy": "default", 
+                        "termination_protection": false, 
+                        "user_data": null, 
+                        "validate_certs": true, 
+                        "volumes": null, 
+                        "vpc_subnet_id": null, 
+                        "wait": true, 
+                        "wait_timeout": "300", 
+                        "zone": null
+                    }, 
+                    "module_name": "ec2"
+                }, 
+                "item": {
+                    "image": "ami-f95ef58a", 
+                    "region": "eu-west-1"
+                }, 
+                "tagged_instances": []
+            }, 
+            {
+                "_ansible_item_result": true, 
+                "_ansible_no_log": false, 
+                "changed": true, 
+                "instance_ids": [
+                    "i-c2e68d7e"
+                ], 
+                "instances": [
+                    {
+                        "ami_launch_index": "0", 
+                        "architecture": "x86_64", 
+                        "block_device_mapping": {
+                            "/dev/sda1": {
+                                "delete_on_termination": true, 
+                                "status": "attached", 
+                                "volume_id": "vol-a739741d"
+                            }
+                        }, 
+                        "dns_name": "ec2-52-29-91-190.eu-central-1.compute.amazonaws.com", 
+                        "ebs_optimized": false, 
+                        "groups": {
+                            "sg-fd34fd95": "hao"
+                        }, 
+                        "hypervisor": "xen", 
+                        "id": "i-c2e68d7e", 
+                        "image_id": "ami-87564feb", 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "launch_time": "2016-06-03T01:14:32.000Z", 
+                        "placement": "eu-central-1b", 
+                        "private_dns_name": "ip-172-31-22-46.eu-central-1.compute.internal", 
+                        "private_ip": "172.31.22.46", 
+                        "public_dns_name": "ec2-52-29-91-190.eu-central-1.compute.amazonaws.com", 
+                        "public_ip": "52.29.91.190", 
+                        "ramdisk": null, 
+                        "region": "eu-central-1", 
+                        "root_device_name": "/dev/sda1", 
+                        "root_device_type": "ebs", 
+                        "state": "running", 
+                        "state_code": 16, 
+                        "tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "tenancy": "default", 
+                        "virtualization_type": "hvm"
+                    }
+                ], 
+                "invocation": {
+                    "module_args": {
+                        "assign_public_ip": false, 
+                        "aws_access_key": null, 
+                        "aws_secret_key": null, 
+                        "count": 1, 
+                        "count_tag": null, 
+                        "ebs_optimized": false, 
+                        "ec2_url": null, 
+                        "exact_count": null, 
+                        "group": [
+                            "hao"
+                        ], 
+                        "group_id": null, 
+                        "id": null, 
+                        "image": "ami-87564feb", 
+                        "instance_ids": null, 
+                        "instance_profile_name": null, 
+                        "instance_tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "keypair": "hao-savi-rsa", 
+                        "monitoring": false, 
+                        "network_interfaces": null, 
+                        "placement_group": null, 
+                        "private_ip": null, 
+                        "profile": null, 
+                        "ramdisk": null, 
+                        "region": "eu-central-1", 
+                        "security_token": null, 
+                        "source_dest_check": true, 
+                        "spot_launch_group": null, 
+                        "spot_price": null, 
+                        "spot_type": "one-time", 
+                        "spot_wait_timeout": "600", 
+                        "state": "present", 
+                        "tenancy": "default", 
+                        "termination_protection": false, 
+                        "user_data": null, 
+                        "validate_certs": true, 
+                        "volumes": null, 
+                        "vpc_subnet_id": null, 
+                        "wait": true, 
+                        "wait_timeout": "300", 
+                        "zone": null
+                    }, 
+                    "module_name": "ec2"
+                }, 
+                "item": {
+                    "image": "ami-87564feb", 
+                    "region": "eu-central-1"
+                }, 
+                "tagged_instances": []
+            }, 
+            {
+                "_ansible_item_result": true, 
+                "_ansible_no_log": false, 
+                "changed": true, 
+                "instance_ids": [
+                    "i-2be889b4"
+                ], 
+                "instances": [
+                    {
+                        "ami_launch_index": "0", 
+                        "architecture": "x86_64", 
+                        "block_device_mapping": {
+                            "/dev/sda1": {
+                                "delete_on_termination": true, 
+                                "status": "attached", 
+                                "volume_id": "vol-558200ab"
+                            }
+                        }, 
+                        "dns_name": "ec2-52-69-213-149.ap-northeast-1.compute.amazonaws.com", 
+                        "ebs_optimized": false, 
+                        "groups": {
+                            "sg-0b4b2c6f": "hao"
+                        }, 
+                        "hypervisor": "xen", 
+                        "id": "i-2be889b4", 
+                        "image_id": "ami-a21529cc", 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "launch_time": "2016-06-03T01:15:01.000Z", 
+                        "placement": "ap-northeast-1a", 
+                        "private_dns_name": "ip-172-31-18-123.ap-northeast-1.compute.internal", 
+                        "private_ip": "172.31.18.123", 
+                        "public_dns_name": "ec2-52-69-213-149.ap-northeast-1.compute.amazonaws.com", 
+                        "public_ip": "52.69.213.149", 
+                        "ramdisk": null, 
+                        "region": "ap-northeast-1", 
+                        "root_device_name": "/dev/sda1", 
+                        "root_device_type": "ebs", 
+                        "state": "running", 
+                        "state_code": 16, 
+                        "tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "tenancy": "default", 
+                        "virtualization_type": "hvm"
+                    }
+                ], 
+                "invocation": {
+                    "module_args": {
+                        "assign_public_ip": false, 
+                        "aws_access_key": null, 
+                        "aws_secret_key": null, 
+                        "count": 1, 
+                        "count_tag": null, 
+                        "ebs_optimized": false, 
+                        "ec2_url": null, 
+                        "exact_count": null, 
+                        "group": [
+                            "hao"
+                        ], 
+                        "group_id": null, 
+                        "id": null, 
+                        "image": "ami-a21529cc", 
+                        "instance_ids": null, 
+                        "instance_profile_name": null, 
+                        "instance_tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "keypair": "hao-savi-rsa", 
+                        "monitoring": false, 
+                        "network_interfaces": null, 
+                        "placement_group": null, 
+                        "private_ip": null, 
+                        "profile": null, 
+                        "ramdisk": null, 
+                        "region": "ap-northeast-1", 
+                        "security_token": null, 
+                        "source_dest_check": true, 
+                        "spot_launch_group": null, 
+                        "spot_price": null, 
+                        "spot_type": "one-time", 
+                        "spot_wait_timeout": "600", 
+                        "state": "present", 
+                        "tenancy": "default", 
+                        "termination_protection": false, 
+                        "user_data": null, 
+                        "validate_certs": true, 
+                        "volumes": null, 
+                        "vpc_subnet_id": null, 
+                        "wait": true, 
+                        "wait_timeout": "300", 
+                        "zone": null
+                    }, 
+                    "module_name": "ec2"
+                }, 
+                "item": {
+                    "image": "ami-a21529cc", 
+                    "region": "ap-northeast-1"
+                }, 
+                "tagged_instances": []
+            }, 
+            {
+                "_ansible_item_result": true, 
+                "_ansible_no_log": false, 
+                "changed": true, 
+                "instance_ids": [
+                    "i-22f00384"
+                ], 
+                "instances": [
+                    {
+                        "ami_launch_index": "0", 
+                        "architecture": "x86_64", 
+                        "block_device_mapping": {
+                            "/dev/sda1": {
+                                "delete_on_termination": true, 
+                                "status": "attached", 
+                                "volume_id": "vol-750f52ad"
+                            }
+                        }, 
+                        "dns_name": "ec2-52-78-31-242.ap-northeast-2.compute.amazonaws.com", 
+                        "ebs_optimized": false, 
+                        "groups": {
+                            "sg-0f4bd766": "hao"
+                        }, 
+                        "hypervisor": "xen", 
+                        "id": "i-22f00384", 
+                        "image_id": "ami-09dc1267", 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "launch_time": "2016-06-03T01:15:26.000Z", 
+                        "placement": "ap-northeast-2c", 
+                        "private_dns_name": "ip-172-31-24-147.ap-northeast-2.compute.internal", 
+                        "private_ip": "172.31.24.147", 
+                        "public_dns_name": "ec2-52-78-31-242.ap-northeast-2.compute.amazonaws.com", 
+                        "public_ip": "52.78.31.242", 
+                        "ramdisk": null, 
+                        "region": "ap-northeast-2", 
+                        "root_device_name": "/dev/sda1", 
+                        "root_device_type": "ebs", 
+                        "state": "running", 
+                        "state_code": 16, 
+                        "tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "tenancy": "default", 
+                        "virtualization_type": "hvm"
+                    }
+                ], 
+                "invocation": {
+                    "module_args": {
+                        "assign_public_ip": false, 
+                        "aws_access_key": null, 
+                        "aws_secret_key": null, 
+                        "count": 1, 
+                        "count_tag": null, 
+                        "ebs_optimized": false, 
+                        "ec2_url": null, 
+                        "exact_count": null, 
+                        "group": [
+                            "hao"
+                        ], 
+                        "group_id": null, 
+                        "id": null, 
+                        "image": "ami-09dc1267", 
+                        "instance_ids": null, 
+                        "instance_profile_name": null, 
+                        "instance_tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "keypair": "hao-savi-rsa", 
+                        "monitoring": false, 
+                        "network_interfaces": null, 
+                        "placement_group": null, 
+                        "private_ip": null, 
+                        "profile": null, 
+                        "ramdisk": null, 
+                        "region": "ap-northeast-2", 
+                        "security_token": null, 
+                        "source_dest_check": true, 
+                        "spot_launch_group": null, 
+                        "spot_price": null, 
+                        "spot_type": "one-time", 
+                        "spot_wait_timeout": "600", 
+                        "state": "present", 
+                        "tenancy": "default", 
+                        "termination_protection": false, 
+                        "user_data": null, 
+                        "validate_certs": true, 
+                        "volumes": null, 
+                        "vpc_subnet_id": null, 
+                        "wait": true, 
+                        "wait_timeout": "300", 
+                        "zone": null
+                    }, 
+                    "module_name": "ec2"
+                }, 
+                "item": {
+                    "image": "ami-09dc1267", 
+                    "region": "ap-northeast-2"
+                }, 
+                "tagged_instances": []
+            }, 
+            {
+                "_ansible_item_result": true, 
+                "_ansible_no_log": false, 
+                "changed": true, 
+                "instance_ids": [
+                    "i-5f183ad1"
+                ], 
+                "instances": [
+                    {
+                        "ami_launch_index": "0", 
+                        "architecture": "x86_64", 
+                        "block_device_mapping": {
+                            "/dev/sda1": {
+                                "delete_on_termination": true, 
+                                "status": "attached", 
+                                "volume_id": "vol-a977106f"
+                            }
+                        }, 
+                        "dns_name": "ec2-52-221-245-165.ap-southeast-1.compute.amazonaws.com", 
+                        "ebs_optimized": false, 
+                        "groups": {
+                            "sg-e3a13787": "hao"
+                        }, 
+                        "hypervisor": "xen", 
+                        "id": "i-5f183ad1", 
+                        "image_id": "ami-25c00c46", 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "launch_time": "2016-06-03T01:15:46.000Z", 
+                        "placement": "ap-southeast-1b", 
+                        "private_dns_name": "ip-172-31-31-101.ap-southeast-1.compute.internal", 
+                        "private_ip": "172.31.31.101", 
+                        "public_dns_name": "ec2-52-221-245-165.ap-southeast-1.compute.amazonaws.com", 
+                        "public_ip": "52.221.245.165", 
+                        "ramdisk": null, 
+                        "region": "ap-southeast-1", 
+                        "root_device_name": "/dev/sda1", 
+                        "root_device_type": "ebs", 
+                        "state": "running", 
+                        "state_code": 16, 
+                        "tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "tenancy": "default", 
+                        "virtualization_type": "hvm"
+                    }
+                ], 
+                "invocation": {
+                    "module_args": {
+                        "assign_public_ip": false, 
+                        "aws_access_key": null, 
+                        "aws_secret_key": null, 
+                        "count": 1, 
+                        "count_tag": null, 
+                        "ebs_optimized": false, 
+                        "ec2_url": null, 
+                        "exact_count": null, 
+                        "group": [
+                            "hao"
+                        ], 
+                        "group_id": null, 
+                        "id": null, 
+                        "image": "ami-25c00c46", 
+                        "instance_ids": null, 
+                        "instance_profile_name": null, 
+                        "instance_tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "keypair": "hao-savi-rsa", 
+                        "monitoring": false, 
+                        "network_interfaces": null, 
+                        "placement_group": null, 
+                        "private_ip": null, 
+                        "profile": null, 
+                        "ramdisk": null, 
+                        "region": "ap-southeast-1", 
+                        "security_token": null, 
+                        "source_dest_check": true, 
+                        "spot_launch_group": null, 
+                        "spot_price": null, 
+                        "spot_type": "one-time", 
+                        "spot_wait_timeout": "600", 
+                        "state": "present", 
+                        "tenancy": "default", 
+                        "termination_protection": false, 
+                        "user_data": null, 
+                        "validate_certs": true, 
+                        "volumes": null, 
+                        "vpc_subnet_id": null, 
+                        "wait": true, 
+                        "wait_timeout": "300", 
+                        "zone": null
+                    }, 
+                    "module_name": "ec2"
+                }, 
+                "item": {
+                    "image": "ami-25c00c46", 
+                    "region": "ap-southeast-1"
+                }, 
+                "tagged_instances": []
+            }, 
+            {
+                "_ansible_item_result": true, 
+                "_ansible_no_log": false, 
+                "changed": true, 
+                "instance_ids": [
+                    "i-9fe89008"
+                ], 
+                "instances": [
+                    {
+                        "ami_launch_index": "0", 
+                        "architecture": "x86_64", 
+                        "block_device_mapping": {
+                            "/dev/sda1": {
+                                "delete_on_termination": true, 
+                                "status": "attached", 
+                                "volume_id": "vol-1dabb391"
+                            }
+                        }, 
+                        "dns_name": "ec2-52-64-135-203.ap-southeast-2.compute.amazonaws.com", 
+                        "ebs_optimized": false, 
+                        "groups": {
+                            "sg-6550e901": "hao"
+                        }, 
+                        "hypervisor": "xen", 
+                        "id": "i-9fe89008", 
+                        "image_id": "ami-6c14310f", 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "launch_time": "2016-06-03T01:16:06.000Z", 
+                        "placement": "ap-southeast-2a", 
+                        "private_dns_name": "ip-172-31-10-57.ap-southeast-2.compute.internal", 
+                        "private_ip": "172.31.10.57", 
+                        "public_dns_name": "ec2-52-64-135-203.ap-southeast-2.compute.amazonaws.com", 
+                        "public_ip": "52.64.135.203", 
+                        "ramdisk": null, 
+                        "region": "ap-southeast-2", 
+                        "root_device_name": "/dev/sda1", 
+                        "root_device_type": "ebs", 
+                        "state": "running", 
+                        "state_code": 16, 
+                        "tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "tenancy": "default", 
+                        "virtualization_type": "hvm"
+                    }
+                ], 
+                "invocation": {
+                    "module_args": {
+                        "assign_public_ip": false, 
+                        "aws_access_key": null, 
+                        "aws_secret_key": null, 
+                        "count": 1, 
+                        "count_tag": null, 
+                        "ebs_optimized": false, 
+                        "ec2_url": null, 
+                        "exact_count": null, 
+                        "group": [
+                            "hao"
+                        ], 
+                        "group_id": null, 
+                        "id": null, 
+                        "image": "ami-6c14310f", 
+                        "instance_ids": null, 
+                        "instance_profile_name": null, 
+                        "instance_tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "keypair": "hao-savi-rsa", 
+                        "monitoring": false, 
+                        "network_interfaces": null, 
+                        "placement_group": null, 
+                        "private_ip": null, 
+                        "profile": null, 
+                        "ramdisk": null, 
+                        "region": "ap-southeast-2", 
+                        "security_token": null, 
+                        "source_dest_check": true, 
+                        "spot_launch_group": null, 
+                        "spot_price": null, 
+                        "spot_type": "one-time", 
+                        "spot_wait_timeout": "600", 
+                        "state": "present", 
+                        "tenancy": "default", 
+                        "termination_protection": false, 
+                        "user_data": null, 
+                        "validate_certs": true, 
+                        "volumes": null, 
+                        "vpc_subnet_id": null, 
+                        "wait": true, 
+                        "wait_timeout": "300", 
+                        "zone": null
+                    }, 
+                    "module_name": "ec2"
+                }, 
+                "item": {
+                    "image": "ami-6c14310f", 
+                    "region": "ap-southeast-2"
+                }, 
+                "tagged_instances": []
+            }, 
+            {
+                "_ansible_item_result": true, 
+                "_ansible_no_log": false, 
+                "changed": true, 
+                "instance_ids": [
+                    "i-1454bd96"
+                ], 
+                "instances": [
+                    {
+                        "ami_launch_index": "0", 
+                        "architecture": "x86_64", 
+                        "block_device_mapping": {
+                            "/dev/sda1": {
+                                "delete_on_termination": true, 
+                                "status": "attached", 
+                                "volume_id": "vol-0902e9a9"
+                            }
+                        }, 
+                        "dns_name": "ec2-52-67-52-122.sa-east-1.compute.amazonaws.com", 
+                        "ebs_optimized": false, 
+                        "groups": {
+                            "sg-9f24d1fb": "hao"
+                        }, 
+                        "hypervisor": "xen", 
+                        "id": "i-1454bd96", 
+                        "image_id": "ami-0fb83963", 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "launch_time": "2016-06-03T01:16:31.000Z", 
+                        "placement": "sa-east-1a", 
+                        "private_dns_name": "ip-172-31-4-51.sa-east-1.compute.internal", 
+                        "private_ip": "172.31.4.51", 
+                        "public_dns_name": "ec2-52-67-52-122.sa-east-1.compute.amazonaws.com", 
+                        "public_ip": "52.67.52.122", 
+                        "ramdisk": null, 
+                        "region": "sa-east-1", 
+                        "root_device_name": "/dev/sda1", 
+                        "root_device_type": "ebs", 
+                        "state": "running", 
+                        "state_code": 16, 
+                        "tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "tenancy": "default", 
+                        "virtualization_type": "hvm"
+                    }
+                ], 
+                "invocation": {
+                    "module_args": {
+                        "assign_public_ip": false, 
+                        "aws_access_key": null, 
+                        "aws_secret_key": null, 
+                        "count": 1, 
+                        "count_tag": null, 
+                        "ebs_optimized": false, 
+                        "ec2_url": null, 
+                        "exact_count": null, 
+                        "group": [
+                            "hao"
+                        ], 
+                        "group_id": null, 
+                        "id": null, 
+                        "image": "ami-0fb83963", 
+                        "instance_ids": null, 
+                        "instance_profile_name": null, 
+                        "instance_tags": {
+                            "Name": "worker-hao"
+                        }, 
+                        "instance_type": "t2.micro", 
+                        "kernel": null, 
+                        "key_name": "hao-savi-rsa", 
+                        "keypair": "hao-savi-rsa", 
+                        "monitoring": false, 
+                        "network_interfaces": null, 
+                        "placement_group": null, 
+                        "private_ip": null, 
+                        "profile": null, 
+                        "ramdisk": null, 
+                        "region": "sa-east-1", 
+                        "security_token": null, 
+                        "source_dest_check": true, 
+                        "spot_launch_group": null, 
+                        "spot_price": null, 
+                        "spot_type": "one-time", 
+                        "spot_wait_timeout": "600", 
+                        "state": "present", 
+                        "tenancy": "default", 
+                        "termination_protection": false, 
+                        "user_data": null, 
+                        "validate_certs": true, 
+                        "volumes": null, 
+                        "vpc_subnet_id": null, 
+                        "wait": true, 
+                        "wait_timeout": "300", 
+                        "zone": null
+                    }, 
+                    "module_name": "ec2"
+                }, 
+                "item": {
+                    "image": "ami-0fb83963", 
+                    "region": "sa-east-1"
+                }, 
+                "tagged_instances": []
+            }
+        ]
+    }
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=5    changed=2    unreachable=0    failed=0   
+

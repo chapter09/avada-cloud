@@ -24,7 +24,7 @@
         - 'sa-east-1'
       register: ec2_info
 
-    - name: Parsing
+    - name: Parsing ec2_info
       set_fact: instance_list={{ ec2_info.results | map(attribute='instances') | list }}
    
     - name: Terminate instance {{ item.id }} in region {{ item.region }}
@@ -34,4 +34,4 @@
         region: '{{ item.region }}'
         state: '{{ action }}'
       with_flattened:
-        - "{{ instance_list }}"
+        - '{{ instance_list }}'

@@ -7,8 +7,7 @@ Ansible playbook for Project Avada
   
     ansible-playbook playbook/ec2_launch.yml -e num=2
 
-`num` means the number of workers in each region.
-
+`num=2` means lauch 2 workers in each region.
 
 ###How to stop, restart and terminate?
 
