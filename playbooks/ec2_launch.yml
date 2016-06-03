@@ -6,17 +6,17 @@
   vars:
     keypair: hao-savi-rsa
     security_group: hao
-    #    instance_type: m3.2xlarge
+    # instance_type: m3.2xlarge
     instance_type: t2.micro
-    vm_num: 2
+    vm_num: {{ num }}
 
   tasks:
     - name: Launch a master instance
       ec2:
-        keypair: "{{ keypair }}"
+        keypair: '{{ keypair }}'
         region: 'us-east-1'
-        group: "{{ security_group }}"
-        instance_type: "{{ instance_type }}"
+        group: '{{ security_group }}'
+        instance_type: '{{ instance_type }}'
         instance_tags:
           Name: master-hao
         image: 'ami-fce3c696'
@@ -26,14 +26,14 @@
 
     - name: Launch worker instances
       ec2: 
-        keypair: "{{ keypair }}"
-        region: "{{ item.region }}"
-        group: "{{ security_group }}"
-        instance_type: "{{ instance_type }}"
+        keypair: '{{ keypair }}'
+        region: '{{ item.region }}'
+        group: '{{ security_group }}'
+        instance_type: '{{ instance_type }}'
         instance_tags:
           Name: worker-hao
-        image: "{{ item.image }}"
-        count: "{{ vm_num }}"
+        image: '{{ item.image }}'
+        count: '{{ vm_num }}'
         wait: no
       with_items:
         - { region: 'us-east-1', image: 'ami-fce3c696'}

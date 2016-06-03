@@ -1,5 +1,7 @@
 # vim:ft=ansible:
 ---
+# This playbook is deprecated.
+# Using "ec2_admin.yml -e action=stopped" instead.
 
 - hosts: localhost
   gather_facts: false
