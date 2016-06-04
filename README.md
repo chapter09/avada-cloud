@@ -5,7 +5,7 @@ Ansible playbook for Project Avada
 
 ####Deploy key-pair on all regions
 
-    ansible-playbook task/ec2_deploy_keys.yml
+    ansible-playbook tasks/ec2_deploy_keys.yml
 
 ####Create a security group on all regions
   
