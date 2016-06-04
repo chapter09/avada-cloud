@@ -4,18 +4,22 @@
 
 - name: Init locale for new instance
   apt: name=language-pack-en
+  become: yes
 
 - name: Install git
   apt: name=git
+  become: yes
 
 - name: Create the Downloads directory for all machines
   file: path=/home/ubuntu/Downloads state=directory mode=0755 owner=ubuntu
 
 - name: Install Oracle Java 8 install python-software-properties
   apt: name=software-properties-common state=latest
+  become: yes
 
 - name: Add Oracle Java Repository
   apt_repository: repo='ppa:webupd8team/java'
+  become: yes
 
 - name: Accept Java 8 License
   debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
@@ -26,6 +30,7 @@
     - oracle-java8-installer
     - ca-certificates
     - oracle-java8-set-default
+  become: yes
 
 - name: Setup JAVA_HOME
   lineinfile: dest=/home/ubuntu/.bashrc line="export JAVA_HOME=/usr/lib/jvm/java-8-oracle/"
@@ -35,6 +40,7 @@
 
 - name: Install iostate
   apt: name=sysstat state=latest
+  become: yes
 
 - name: Create a directory for JvmTop
   file: path=/home/ubuntu/jvmtop state=directory mode=0755 owner=ubuntu
@@ -46,7 +52,7 @@
   unarchive: src=/home/ubuntu/Downloads/jvmtop-0.8.0.tar.gz dest=/home/ubuntu/jvmtop/
 
 - name: Make JvmTop executable
-  command: chmod +x /home/ubuntu/jvmtop/jvmtop.sh
+  file: path=/home/ubuntu/jvmtop/jvmtop.sh mode=0755
 
 - name: Install dependencies for nethogs
   apt: name={{ item }}
@@ -54,6 +60,7 @@
     - build-essential
     - libncurses5-dev
     - libpcap-dev
+  become: yes
 
 - name: Git clone nethogs source code
   git: repo=https://github.com/raboof/nethogs dest=/home/ubuntu/Downloads/nethogs
@@ -66,9 +73,8 @@
   shell: sleep 2 && shutdown -r now "Ansible updates triggered"
   async: 1
   poll: 0
-  sudo: true
+  become: yes
   ignore_errors: true
 
 - name: Waiting for all instances to come back
   local_action: wait_for host={{ inventory_hostname }} state=started
-  sudo: false
