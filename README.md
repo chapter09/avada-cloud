@@ -9,19 +9,19 @@ Ansible playbook for Project Avada
 
 ####Create a security group on all regions
   
-    ansible-playbook task/ec2_deploy_securitygroup.yml
+    ansible-playbook tasks/ec2_deploy_securitygroup.yml
 
 ###How to launch instances?
   
-    ansible-playbook playbook/ec2_launch.yml -e num=2
+    ansible-playbook tasks/ec2_create_instances.yml -e num=2
 
 `num=2` means lauch 2 workers in each region. `ec2_launch.yml` will generate `hosts` file automatically.
 
 ###How to stop, restart and terminate?
 
-    ansible-playbook task/ec2_admin.yml -e action=stopped
-    ansible-playbook task/ec2_admin.yml -e action=running
-    ansible-playbook task/ec2_admin.yml -e action=absent
+    ansible-playbook tasks/ec2_admin.yml -e action=stopped
+    ansible-playbook tasks/ec2_admin.yml -e action=running
+    ansible-playbook tasks/ec2_admin.yml -e action=absent
 
 ###How to restart the whole Spark+Hive+HDFS cluster?
 
