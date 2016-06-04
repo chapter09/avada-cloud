@@ -123,8 +123,8 @@ input_list = [
 			]
 		] 
 
-t_dict = Template("""{{ worker.public_ip }} \t # {{ worker.region }}""")
-t_list = Template("""{% for region in worker_list %}{% for worker in region %}{{ worker.public_ip }} \t # {{ worker.region }}
+t_dict = Template("""{{ worker.public_ip }} {{ '\t' }} # {{ worker.region }}""")
+t_list = Template("""{% for region in worker_list %}{% for worker in region %}{{ worker.public_ip }} {{ '\t' }} # {{ worker.region }}
 {% endfor %}{% endfor %}""")
 
 print t_dict.render(worker=input_dict)
