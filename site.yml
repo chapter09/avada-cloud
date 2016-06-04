@@ -1,12 +1,13 @@
 ---
 # This Playbook will deploy the whole Spark + Hive + HDFF on the cluster
 
-- hosts: all
+#- hosts: all
+#  remote_user: ubuntu 
+#  roles:
+#  - common
+
+- hosts: master_node
   remote_user: ubuntu 
   roles:
-  - common
-
-#- hosts: master_node
-#  roles:
-#  - role: master
+    - role: master
 

@@ -10,6 +10,10 @@
   apt: name=git
   become: yes
 
+- name: Configure ssh_config
+  lineinfile: dest=/etc/ssh/ssh_config line='    StrictHostKeyChecking no\n    UserKnownHostsFile=/dev/null'
+  become: yes
+
 - name: Create the Downloads directory for all machines
   file: path=/home/ubuntu/Downloads state=directory mode=0755 owner=ubuntu
 
