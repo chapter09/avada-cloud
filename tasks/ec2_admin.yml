@@ -27,7 +27,7 @@
     - name: Parsing ec2_info
       set_fact: instance_list={{ ec2_info.results | map(attribute='instances') | list }}
    
-    - name: Set instance '{{ item.id }}' in region '{{ item.region }}' to '{{ action }}'
+    - name: Execute EC2 admin operation to all instances
       local_action:
         module: ec2
         instance_ids: '{{ item.id }}'
@@ -38,5 +38,5 @@
         - '{{ instance_list }}'
 
     - name: Re-generate inventory file hosts after restart
-      include: ec2_restore.yml instance_list='{{ instance_list }}'
+      include: ec2_restore.yml
       when: action =='running'
