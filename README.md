@@ -27,6 +27,10 @@ Ansible playbook for Project Avada
 
 ####Stop
 
+    ansible-playbook tasks/ec2_admin.yml -e action=stopped
 
 
 ####Start
+    
+    ansible-playbook tasks/ec2_admin.yml -e action=running
+
