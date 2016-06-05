@@ -6,7 +6,7 @@
 #  roles:
 #  - common
 
-- hosts: master_node
+- hosts: master
   remote_user: ubuntu 
   roles:
     - role: master

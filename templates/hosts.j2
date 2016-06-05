@@ -1,8 +1,10 @@
 [master]
-{{ master.public_ip }} {{ '\t' }} # {{ master.region }}
+{{ master.public_dns_name }} {{ '\t' }} # {{ master.region }}
 
 [worker]
 {% for region in worker_list %}
 {% for worker in region %}
-  {{ worker.public_ip }} {{ '\t' }} # {{ worker.region }}
+{% if worker.tags.Name == 'worker-hao' %}
+{{ worker.public_dns_name }} {{ '\t' }} # {{ worker.region }}
+{% endif %}
 {% endfor %}{% endfor %}

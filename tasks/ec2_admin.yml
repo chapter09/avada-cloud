@@ -27,11 +27,27 @@
     - name: Parsing ec2_info
       set_fact: instance_list={{ ec2_info.results | map(attribute='instances') | list }}
    
-    - name: Terminate instance {{ item.id }} in region {{ item.region }}
+    - name: Set instance '{{ item.id }}' in region '{{ item.region }}' to '{{ action }}'
       local_action:
         module: ec2
         instance_ids: '{{ item.id }}'
         region: '{{ item.region }}'
         state: '{{ action }}'
+        wait: yes
       with_flattened:
         - '{{ instance_list }}'
+
+    - name: Re-generate inventory file hosts after restart
+      include: ec2_restore.yml instance_list='{{ instance_list }}'
+      when: action =='running'
+
+    #- debug: msg='{{ instance_list }}'
+    #- name: setup master
+    #  set_fact: master="{% for instances in instance_list %}{% for instance in instances %}{% if instance.tags.Name == 'master-hao' %}{{ instance }}{% endif %}{% endfor %}{% endfor %}"
+
+    #- name: setup master
+    #  set_fact: worker_list='{{ instance_list }}'
+
+    #- name: Generate inventory file hosts
+    #  template: src=../templates/hosts.j2 dest=../hosts
+

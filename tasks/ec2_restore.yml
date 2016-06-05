@@ -1,0 +1,13 @@
+# vim:ft=ansible:
+---
+# This Playbook will be called by ec_admin.yml.
+# Regenerate the hosts file after instances are restarted
+
+- name: setup master
+  set_fact: master="{% for instances in instance_list %}{% for instance in instances %}{% if instance.tags.Name == 'master-hao' %}{{ instance }}{% endif %}{% endfor %}{% endfor %}"
+
+- name: setup master
+  set_fact: worker_list='{{ instance_list }}'
+
+- name: Generate inventory file hosts
+  template: src=../templates/hosts.j2 dest=../hosts
