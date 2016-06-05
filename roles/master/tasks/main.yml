@@ -2,15 +2,15 @@
 # This Playbook builds Spark, Hive and HDFS on Master Node
 
 - name: Copy Spark, HDFS and Hive code base to Master Node
-  copy: src=spark_hdfs_hive.tar.gz dest=/home/ubuntu/Downloads 
+  unarchive: src=roles/master/files/spark_hdfs_hive.tar.gz dest=/home/ubuntu/
 
-- name: Extract code bases to HOME
-  unarchive: src=/home/ubuntu/Downloads/spark_hdfs_hive.tar.gz dest=/home/ubuntu/
-
-- name: Update configuration file
-  include: configuration.yml
-
+- name: Create directory for HDFS name node
+  file: path=/var/local/hadoop/hdfs/name state=directory mode=0755 owner=ubuntu
+  become: yes
   
+#- name: Update configuration file
+#  include: configuration.yml
+
 
 #- name: Create directory for HDFS name node
 #  file: path=/var/local/hadoop/hdfs/name state=directory mode=0755 owner=ubuntu
