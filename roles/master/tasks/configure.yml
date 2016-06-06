@@ -1,0 +1,16 @@
+# vim:fs=ansible:
+---
+# This Playbook will
+
+- name: Update configuration for Spark
+  include: config_spark.yml
+
+- name: Update configuration for HDFS
+  include: config_hdfs.yml
+
+- name: Update configuration for Hive
+  include: config_hive.yml
+
+- name: Sync to all worker nodes
+  include: sync.yml
+
