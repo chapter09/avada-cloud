@@ -1,3 +1,4 @@
+# vim:ft=ansible:
 ---
 # This Playbook builds Spark, Hive and HDFS on Master Node
 
