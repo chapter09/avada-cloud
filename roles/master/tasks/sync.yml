@@ -1,0 +1,17 @@
+# vim:ft=ansible:
+---
+# This Playbook is used to deploy Spark, Hive and HDFS worker node
+
+- name: Sync Spark source code and configuration from the master
+  synchronize:
+    src: '/home/ubuntu/{{ item }}'
+    dest: /home/ubuntu/
+    rsync_opts:
+      - "--no-motd"
+      - "--exclude=.git"
+      - "--exclude=logs"
+  delegate_to: "{{ groups.master[0] }}"
+  with_items:
+    - 'spark-1.6.1'
+    - 'hadoop-2.6.4'
+    - 'hive-1.2.1'

@@ -1,0 +1,14 @@
+# vim:ft=ansible:
+---
+# This Playbook will restart instances form all regions
+# regenerate the hosts file, and redeploy the Spark, Hive and HDFS configuration files
+
+- hosts: localhost
+  gather_facts: false
+  connection: local
+  vars:
+    action: 'running'
+  tasks:
+    - include: ec2_admin.yml action={{ action }}
+
+    - debug: msg='{{ instance_list }}'
