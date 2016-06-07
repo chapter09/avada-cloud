@@ -16,4 +16,8 @@
     - 'hadoop-2.6.4/etc/hadoop/hdfs-site.xml'
     - 'hadoop-2.6.4/etc/hadoop/slaves'
 
-- name
+- name: Update spark-defaults.conf
+  template:
+
+- name: Update spark-env.conf
+  template: 
