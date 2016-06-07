@@ -5,6 +5,18 @@ Ansible playbook for Project Avada
 
 * Ansible 2.0 (or above)
 
+### Notes for hardcode
+####Version
+    
+    Hadoop: 2.6.4
+    Spark: 1.6.1
+    Hive: 1.2.1
+
+
+####OS
+    
+    username: ubuntu
+
 ###Initialize the AWS EC2
 
 ####Deploy key-pair on all regions
@@ -50,14 +62,3 @@ In this playbook, we finish the following deployments:
     
     ansible-playbook tasks/ec2/ec2_admin.yml -e action=running
 
-### Notes for hardcode
-####Version
-    
-    Hadoop: 2.6.4
-    Spark: 1.6.1
-    Hive: 1.2.1
-
-
-####OS
-    
-    username: ubuntu
