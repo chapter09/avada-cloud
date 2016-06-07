@@ -46,3 +46,14 @@ In this playbook, we finish the following deployments:
     
     ansible-playbook tasks/ec2_admin.yml -e action=running
 
+### Notes for hardcode
+####Version
+    
+    Hadoop: 2.6.2
+    Spark: 1.6.1
+    Hive: 1.2.1
+
+
+####OS
+    
+    username: ubuntu
