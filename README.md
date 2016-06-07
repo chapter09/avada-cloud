@@ -23,6 +23,18 @@ Ansible playbook for Project Avada
     ansible-playbook tasks/ec2_admin.yml -e action=running
     ansible-playbook tasks/ec2_admin.yml -e action=absent
 
+###How to start the whole Spark+Hive+HDFS cluster?
+
+####Start
+
+    ansible-playbook -i hosts site.yml
+
+In this playbook, we finish the following deployments:
+
+1. Upload the source code of Spark, Hive and HDFS to EC2 `master` node. [ by `roles/master/main.yml` ]
+2. Update corresponding configuration of Spark, Hive and HDFS (with public IP of `master` and `workers`. [ by `roles/master/config.yml` ]
+3. Sync source code and configuration to all `workers`. [ by `roles/worker/sync.yml` ]
+
 ###How to restart the whole Spark+Hive+HDFS cluster?
 
 ####Stop
