@@ -7,15 +7,15 @@
 #  roles:
 #    - common
 
-#- hosts: master
-#  remote_user: ubuntu 
-#  roles:
-#    - role: master
-
-- hosts: worker
+- hosts: master
   remote_user: ubuntu 
   roles:
-    - role: worker
+    - role: master
+
+#- hosts: worker
+#  remote_user: ubuntu 
+#  roles:
+#    - role: worker
 
 #- hosts: master
 #  tasks:
