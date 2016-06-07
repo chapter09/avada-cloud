@@ -68,13 +68,21 @@
     <value>0.0.0.0</value>
   </property>
 
-  <!--<property>                                                       -->
-  <!--  <name>dfs.client.use.datanode.hostname</name>                  -->
-  <!--  <value>false</value>                                           -->
-  <!--  <description>Whether clients should use datanode hostnames when-->
-  <!--    connecting to datanodes.                                     -->
-  <!--  </description>                                                 -->
-  <!--</property>                                                      -->
+  <property>                                                      
+   <name>dfs.client.use.datanode.hostname</name>                 
+   <value>false</value>                                          
+   <description>Whether clients should use datanode hostnames when
+     connecting to datanodes.                                    
+   </description>                                                
+  </property>                                                     
+
+  <property>
+    <name>dfs.datanode.use.datanode.hostname</name>
+    <value>false</value>
+    <description>Whether datanodes should use datanode hostnames when
+      connecting to other datanodes for data transfer.
+    </description>
+  </property>
 
   <property>
     <name>dfs.hosts.exclude</name>

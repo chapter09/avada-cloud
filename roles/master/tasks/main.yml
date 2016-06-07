@@ -12,7 +12,6 @@
 - name: Update configuration file
   include: roles/master/tasks/config.yml
 
-
 #- name: Launch HDFS, Spark
 #  command: chdir={{ item.dir }} {{ item.cmd }}
 #  with_items:

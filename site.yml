@@ -12,10 +12,10 @@
   roles:
     - role: master
 
-#- hosts: worker
-#  remote_user: ubuntu 
-#  roles:
-#    - role: worker
+- hosts: worker
+  remote_user: ubuntu 
+  roles:
+    - role: worker
 
 #- hosts: master
 #  tasks:

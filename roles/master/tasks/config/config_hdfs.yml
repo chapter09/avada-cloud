@@ -11,8 +11,8 @@
 - name: Obtain AWS_ACCESS_KEY_ID from local env var
   set_fact: aws_access_key_id="{{ lookup('env', 'AWS_ACCESS_KEY_ID') }}"
 
-- name: Obtain AWS_SECRET_KEY from local env var
-  set_fact: aws_secret_key="{{ lookup('env', 'AWS_SECRET_KEY') }}"
+- name: Obtain AWS_SECRET_ACCESS_KEY from local env var
+  set_fact: aws_secret_key="{{ lookup('env', 'AWS_SECRET_ACCESS_KEY') }}"
 
 - name: Update core-site.xml 
   template: src=roles/master/templates/hadoop/core-site.j2 dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/core-site.xml

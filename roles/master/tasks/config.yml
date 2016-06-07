@@ -1,6 +1,6 @@
-# vim:fs=ansible:
+# vim:ft=ansible:
 ---
-# This Playbook will
+# This Playbook will update all configurations and sync to all workers
 
 - name: Update configuration for Spark
   include: roles/master/tasks/config/config_spark.yml
@@ -10,7 +10,4 @@
 
 - name: Update configuration for Hive
   include: roles/master/tasks/config/config_hive.yml
-
-- name: Sync to all worker nodes
-  include: roles/master/tasks/sync.yml
 
