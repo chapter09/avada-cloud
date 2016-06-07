@@ -15,3 +15,12 @@
     - 'spark-1.6.1'
     - 'hadoop-2.6.4'
     - 'hive-1.2.1'
+
+- name: Spark master variable
+  set_fact: master='{{ groups.master[0] }}'
+
+- name: Spark worker public_dns variable
+  set_fact: public_dns='{{ inventory_hostname }}'
+
+- name: Update Spark configuration spark-env.sh per worker
+  template: src=roles/master/templates/spark/spark-env.j2 dest=/home/ubuntu/spark-1.6.1/conf/spark-env.sh

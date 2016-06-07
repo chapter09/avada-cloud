@@ -2,14 +2,14 @@
 ---
 # This Playbook updates configuration for Spark
 
-- name: Spark namenode variable
+- name: Spark master variable
   set_fact: master='{{ groups.master[0] }}'
 
-- name: Spark datanodes variable
-  set_fact: worker_list='{{ groups.worker }}'
+- name: Spark public_dns variable
+  set_fact: public_dns='{{ groups.master[0] }}'
 
 - name: Copy config files of Hive and HDFS to Spark conf
-  copy: remote_src=True src=/home/ubuntu/'{{ item }}' dest=/home/ubuntu/spark-1.6.1/conf/
+  copy: remote_src=True src=/home/ubuntu/{{ item }} dest=/home/ubuntu/spark-1.6.1/conf/
   with_items:
     - 'hive-1.2.1/conf/hive-site.xml'
     - 'hadoop-2.6.4/etc/hadoop/core-site.xml'
@@ -17,7 +17,7 @@
     - 'hadoop-2.6.4/etc/hadoop/slaves'
 
 - name: Update spark-defaults.conf
-  template:
+  template: src=roles/master/templates/spark/spark-defaults.j2 dest=/home/ubuntu/spark-1.6.1/conf/spark-defaults.conf
 
-- name: Update spark-env.conf
-  template: 
+- name: Update spark-env.sh
+  template: src=roles/master/templates/spark/spark-env.j2 dest=/home/ubuntu/spark-1.6.1/conf/spark-env.sh

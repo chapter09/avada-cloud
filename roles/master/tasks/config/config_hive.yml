@@ -1,0 +1,4 @@
+# vim:ft=ansible:
+---
+# This Playbook runs all the common plays in the deployment
+
