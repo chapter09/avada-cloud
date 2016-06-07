@@ -1,6 +1,10 @@
 #avada-playbook
 Ansible playbook for Project Avada
 
+###Requirements
+
+* Ansible 2.0 (or above)
+
 ###Initialize the AWS EC2
 
 ####Deploy key-pair on all regions
@@ -49,7 +53,7 @@ In this playbook, we finish the following deployments:
 ### Notes for hardcode
 ####Version
     
-    Hadoop: 2.6.2
+    Hadoop: 2.6.4
     Spark: 1.6.1
     Hive: 1.2.1
 

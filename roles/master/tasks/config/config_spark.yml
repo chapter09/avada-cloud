@@ -1,0 +1,19 @@
+# vim:ft=ansible:
+---
+# This Playbook updates configuration for Spark
+
+- name: Spark namenode variable
+  set_fact: master='{{ groups.master[0] }}'
+
+- name: Spark datanodes variable
+  set_fact: worker_list='{{ groups.worker }}'
+
+- name: Copy config files of Hive and HDFS to Spark conf
+  copy: remote_src=True src=/home/ubuntu/'{{ item }}' dest=/home/ubuntu/spark-1.6.1/conf/
+  with_items:
+    - 'hive-1.2.1/conf/hive-site.xml'
+    - 'hadoop-2.6.4/etc/hadoop/core-site.xml'
+    - 'hadoop-2.6.4/etc/hadoop/hdfs-site.xml'
+    - 'hadoop-2.6.4/etc/hadoop/slaves'
+
+- name
