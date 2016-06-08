@@ -1,0 +1,13 @@
+# vim:ft=ansible:
+---
+# This Playbook will restart instances form all regions
+# regenerate the hosts file, and redeploy the Spark, Hive and HDFS configuration files
+
+- hosts: master
+  remote_user: ubuntu
+  tasks:
+    - name: Stop HDFS cluster
+      command: sbin/stop-dfs.sh chdir=/home/ubuntu/hadoop-2.6.4/
+
+    - name: Stop Spark cluster
+      command: sbin/stop-all.sh chdir=/home/ubuntu/spark-1.6.1/
