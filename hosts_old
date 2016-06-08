@@ -1,8 +1,0 @@
-[master]
-ec2-54-89-255-114.compute-1.amazonaws.com 	 # us-east-1
-
-[worker]
-ec2-52-207-242-229.compute-1.amazonaws.com 	 # us-east-1
-ec2-54-165-196-140.compute-1.amazonaws.com 	 # us-east-1
-ec2-54-183-89-239.us-west-1.compute.amazonaws.com 	 # us-west-1
-ec2-54-153-83-164.us-west-1.compute.amazonaws.com 	 # us-west-1

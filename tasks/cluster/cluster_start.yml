@@ -18,6 +18,10 @@
 - hosts: master
   remote_user: ubuntu
   tasks:
+    - name: Format HDFS namenode
+      include: cluster_init.yml 
+      when: init | skipped
+
     - name: Start HDFS cluster
       command: sbin/start-dfs.sh chdir=/home/ubuntu/hadoop-2.6.4/
 
