@@ -40,9 +40,9 @@ Ansible playbook for Project Avada
 
 ###How to stop, restart and terminate?
 
-    ansible-playbook tasks/ec2/ec2_admin.yml -e action=stopped
-    ansible-playbook tasks/ec2/ec2_admin.yml -e action=running
-    ansible-playbook tasks/ec2/ec2_admin.yml -e action=absent
+    ansible-playbook -i hosts tasks/ec2/ec2_admin.yml -e action=stopped
+    ansible-playbook -i hosts tasks/ec2/ec2_admin.yml -e action=running
+    ansible-playbook -i hosts tasks/ec2/ec2_admin.yml -e action=absent
 
 ###How to start the whole Spark+Hive+HDFS cluster?
 
