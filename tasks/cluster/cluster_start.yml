@@ -11,6 +11,7 @@
 
 - hosts: worker
   remote_user: ubuntu
+  gather_facts: no 
   tasks:
     - name: Sync and render configuration file
       include: "{{ inventory_dir }}/roles/worker/tasks/sync.yml"
@@ -19,8 +20,8 @@
   remote_user: ubuntu
   tasks:
     - name: Format HDFS namenode
-      include: cluster_init.yml 
-      when: init | skipped
+      include: hdfs_init.yml 
+      when: init is defined
 
     - name: Start HDFS cluster
       command: sbin/start-dfs.sh chdir=/home/ubuntu/hadoop-2.6.4/

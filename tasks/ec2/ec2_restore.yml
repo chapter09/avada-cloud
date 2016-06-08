@@ -31,4 +31,4 @@
   set_fact: worker_list='{{ instance_list }}'
 
 - name: Generate inventory file hosts
-  template: src=../templates/hosts.j2 dest=../hosts
+  template: src='{{ inventory_dir }}/templates/hosts.j2' dest='{{ inventory_dir }}/hosts'
