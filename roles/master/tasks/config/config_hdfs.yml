@@ -15,11 +15,11 @@
   set_fact: aws_secret_key="{{ lookup('env', 'AWS_SECRET_ACCESS_KEY') }}"
 
 - name: Update core-site.xml 
-  template: src=roles/master/templates/hadoop/core-site.j2 dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/core-site.xml
+  template: src='{{ inventory_dir }}/roles/master/templates/hadoop/core-site.j2' dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/core-site.xml
 
 - name: Update hdfs-site.xml
-  template: src=roles/master/templates/hadoop/hdfs-site.xml dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/hdfs-site.xml
+  template: src='{{ inventory_dir }}/roles/master/templates/hadoop/hdfs-site.xml' dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/hdfs-site.xml
 
 - name: Update slaves
-  template: src=roles/master/templates/hadoop/slaves.j2 dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/slaves
+  template: src='{{ inventory_dir }}/roles/master/templates/hadoop/slaves.j2' dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/slaves
 

@@ -1,14 +1,25 @@
 # vim:ft=ansible:
 ---
-# This Playbook will restart instances form all regions
-# regenerate the hosts file, and redeploy the Spark, Hive and HDFS configuration files
+# This Playbook update the Spark, Hive and HDFS configuration files
+# and launch the cluster
 
-- hosts: localhost
-  gather_facts: false
-  connection: local
-  vars:
-    action: 'running'
+- hosts: master
+  remote_user: ubuntu
   tasks:
-    - include: ec2_admin.yml action={{ action }}
+    - name: Update configuration file
+      include: "{{ inventory_dir }}/roles/master/tasks/config.yml"
 
-    - debug: msg='{{ instance_list }}'
+- hosts: worker
+  remote_user: ubuntu
+  tasks:
+    - name: Sync and render configuration file
+      include: "{{ inventory_dir }}/roles/worker/tasks/sync.yml"
+
+- hosts: master
+  remote_user: ubuntu
+  tasks:
+    - name: Start HDFS cluster
+      command: sbin/start-dfs.sh chdir=/home/ubuntu/hadoop-2.6.4/
+
+    - name: Start Spark cluster
+      command: sbin/start-all.sh chdir=/home/ubuntu/spark-1.6.1/

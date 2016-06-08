@@ -3,10 +3,10 @@
 # This Playbook will update all configurations and sync to all workers
 
 - name: Update configuration for HDFS
-  include: roles/master/tasks/config/config_hdfs.yml
+  include: "{{ inventory_dir }}/roles/master/tasks/config/config_hdfs.yml"
 
 - name: Update configuration for Hive
-  include: roles/master/tasks/config/config_hive.yml
+  include: "{{ inventory_dir }}/roles/master/tasks/config/config_hive.yml"
 
 - name: Update configuration for Spark
-  include: roles/master/tasks/config/config_spark.yml
+  include: "{{ inventory_dir }}/roles/master/tasks/config/config_spark.yml"

@@ -17,7 +17,7 @@
     - 'hadoop-2.6.4/etc/hadoop/slaves'
 
 - name: Update spark-defaults.conf
-  template: src=roles/master/templates/spark/spark-defaults.j2 dest=/home/ubuntu/spark-1.6.1/conf/spark-defaults.conf
+  template: src='{{ inventory_dir }}/roles/master/templates/spark/spark-defaults.j2' dest=/home/ubuntu/spark-1.6.1/conf/spark-defaults.conf
 
 - name: Update spark-env.sh
-  template: src=roles/master/templates/spark/spark-env.j2 dest=/home/ubuntu/spark-1.6.1/conf/spark-env.sh
+  template: src='{{ inventory_dir }}/roles/master/templates/spark/spark-env.j2' dest=/home/ubuntu/spark-1.6.1/conf/spark-env.sh
