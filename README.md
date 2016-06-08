@@ -17,6 +17,11 @@ Ansible playbook for Project Avada
     
     username: ubuntu
 
+####EC2
+    
+    region: 'us-east-1'
+
+
 ###Initialize the AWS EC2
 
 ####Deploy key-pair on all regions
@@ -29,7 +34,7 @@ Ansible playbook for Project Avada
 
 ###How to launch instances?
   
-    ansible-playbook tasks/ec2/ec2_create_instances.yml -e num=2
+    ansible-playbook -i hosts tasks/ec2/ec2_create_instances.yml -e num=2
 
 `num=2` means lauch 2 workers in each region. `ec2_launch.yml` will generate `hosts` file automatically.
 
