@@ -44,6 +44,7 @@ Ansible playbook for Project Avada
 ####Start
 
     ansible-playbook -i hosts site.yml
+    ansible-playbook -i hosts tasks/cluster/cluster_start.yml
 
 In this playbook, we finish the following deployments:
 
@@ -51,14 +52,19 @@ In this playbook, we finish the following deployments:
 2. Update corresponding configuration of Spark, Hive and HDFS (with public IP of `master` and `workers`. [ by `roles/master/config.yml` ]
 3. Sync source code and configuration to all `workers`. [ by `roles/worker/sync.yml` ]
 
+####Stop
+
+    ansible-playbook -i hosts tasks/cluster/cluster_stop.yml
+
 ###How to restart the whole Spark+Hive+HDFS cluster?
 
 ####Stop
 
     ansible-playbook tasks/ec2/ec2_admin.yml -e action=stopped
 
-
 ####Start
     
     ansible-playbook tasks/ec2/ec2_admin.yml -e action=running
+    ansible-playbook -i hosts tasks/cluster/cluster_start.yml
+
 
