@@ -17,6 +17,11 @@ Ansible playbook for Project Avada
     
     username: ubuntu
 
+####EC2
+    
+    region: 'us-east-1'
+
+
 ###Initialize the AWS EC2
 
 ####Deploy key-pair on all regions
