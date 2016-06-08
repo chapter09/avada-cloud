@@ -72,4 +72,20 @@ In this playbook, we finish the following deployments:
     ansible-playbook tasks/ec2/ec2_admin.yml -e action=running
     ansible-playbook -i hosts tasks/cluster/cluster_start.yml
 
+###Bugs
+####SSH config
+    
+    ssh -C -q -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ConnectTimeout=10 -o ControlPath=/home/ubuntu/.ansible/cp/ansible-ssh-%h-%p-%r ec2-54-67-16-133.us-west-1.compute.amazonaws.com
+    
+    debug3: muxserver_listen: temporary control path /home/ubuntu/.ansible/cp/ansible-ssh-ec2-54-67-16-133.us-west-1.compute.amazonaws.com-22-ubuntu.ubYbuuP8hGfS6YiF unix_listener: "/home/ubuntu/.ansible/cp/ansible-ssh-ec2-54-67-16-133.us-west-1.compute.amazonaws.com-22-ubuntu.ubYbuuP8hGfS6YiF" too long for Unix domain socket
+
+Solution:
+
+in `ansible.cfg`:
+
+    [ssh_connection]
+    control_path = /tmp/%%h-%%r
+    
+
+
 
