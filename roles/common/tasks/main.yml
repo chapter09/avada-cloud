@@ -6,6 +6,10 @@
   apt: name=language-pack-en
   become: yes
 
+- name: Update apt repo
+  apt: update_cache=yes
+  become: yes
+
 - name: Install git
   apt: name=git
   become: yes
@@ -30,6 +34,7 @@
 
 - name: Accept Java 8 License
   debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+  become: yes
 
 - name: Install Oracle Java 8
   apt: name={{item}} state=latest

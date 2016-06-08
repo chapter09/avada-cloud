@@ -6,8 +6,8 @@
   vars:
     keypair: hao-savi-rsa
     security_group: hao
-    # instance_type: m3.2xlarge
-    instance_type: t2.micro
+    instance_type: m3.2xlarge
+    #instance_type: t2.micro
     vm_num: '{{ num }}'
 
   tasks:
@@ -36,7 +36,7 @@
         group: '{{ security_group }}'
         instance_type: '{{ instance_type }}'
         instance_tags:
-          Name: worker-hao
+           Name: worker-hao
         image: '{{ item.image }}'
         count: '{{ vm_num }}'
         wait: yes
@@ -62,5 +62,4 @@
     #- debug: msg='{{ worker_list }}'
 
     - name: Generate inventory file hosts
-      template: src=../templates/hosts.j2 dest=../hosts
-
+      template: src='{{ inventory_dir }}/templates/hosts.j2' dest='{{ inventory_dir }}/hosts'
