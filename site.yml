@@ -5,7 +5,7 @@
 - hosts: all
   remote_user: ubuntu 
   roles:
-    - common
+    - role: common
 
 - hosts: master
   remote_user: ubuntu 
