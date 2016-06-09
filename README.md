@@ -49,7 +49,7 @@ Ansible playbook for Project Avada
 ####Start
 
     ansible-playbook -i hosts site.yml
-    ansible-playbook -i hosts tasks/cluster/cluster_start.yml
+    ansible-playbook -i hosts tasks/cluster/cluster_start.yml -e init=1
 
 In this playbook, we finish the following deployments:
 
