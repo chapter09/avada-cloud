@@ -3,12 +3,9 @@
 # This Playbook update the Spark, Hive and HDFS configuration files
 # and launch the cluster
 
-- hosts: master
-  remote_user: ubuntu
-  tasks:
-    - name: Format HDFS namenode
-      command: bin/hadoop namenode -format chdir=/home/ubuntu/hadoop-2.6.4/
+- name: Format HDFS namenode
+  command: bin/hadoop namenode -format chdir=/home/ubuntu/hadoop-2.6.4/
 
-    - name: Format HDFS namenode
-      command: bin/hdfs dfs -mkdir /eventLog chdir=/home/ubuntu/hadoop-2.6.4/
+- name: Create dir eventLog
+  command: bin/hdfs dfs -mkdir /eventLog chdir=/home/ubuntu/hadoop-2.6.4/
 
