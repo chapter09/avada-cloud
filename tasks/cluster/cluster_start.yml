@@ -16,12 +16,18 @@
     - name: Sync and render configuration file
       include: "{{ inventory_dir }}/roles/worker/tasks/sync.yml"
 
+- hosts: all
+  remote_user: ubuntu
+  tasks:
+    - name: For m3.x2large 2xSSD
+      include: "{{ inventory_dir }}/roles/common/tasks/ec2_ssd_mount.yml" 
+
 - hosts: master
   remote_user: ubuntu
   tasks:
     - name: Format HDFS namenode
       include: hdfs_init.yml 
-      when: init is defined
+      # when: init is defined
 
     - name: Start HDFS cluster
       command: sbin/start-dfs.sh chdir=/home/ubuntu/hadoop-2.6.4/

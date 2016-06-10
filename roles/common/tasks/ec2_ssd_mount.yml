@@ -3,7 +3,7 @@
 # This Playbook is used for instance flavor m3.x2large to mount 2xSSD
 
 - name: For m3.x2large, umount /dev/xvdb
-  command: 'umount /mnt'
+  mount: name=/mnt/ src=/mnt/xvdb fstype=ext3 state=unmounted
   become: yes
 
 - name: For m3.x2large, create /mnt/u1
@@ -15,9 +15,25 @@
   become: yes
 
 - name: For m3.x2large, mount /dev/xvdb /mnt/u1
-  command: 'mount /dev/xvdb /mnt/u1'
+  mount: name=/mnt/u1 src=/dev/xvdb fstype=ext3 state=mounted
   become: yes
 
 - name: For m3.x2large, mount /dev/xvdc to /mnt/u2
-  command: 'mount /dev/xvdc /mnt/u2'
+  mount: name=/mnt/u2 src=/dev/xvdc fstype=ext3 state=mounted
+  become: yes
+
+- name: Create directory /mnt/u1 for HDFS name node
+  file: path=/mnt/u1/hadoop/name state=directory mode=0755 owner=ubuntu
+  become: yes
+
+- name: Create directory /mnt/u2 for HDFS name node
+  file: path=/mnt/u2/hadoop/name state=directory mode=0755 owner=ubuntu
+  become: yes
+
+- name: Create directory /mnt/u1 for HDFS name node
+  file: path=/mnt/u1/hadoop/data state=directory mode=0755 owner=ubuntu
+  become: yes
+
+- name: Create directory /mnt/u2 for HDFS name node
+  file: path=/mnt/u2/hadoop/data state=directory mode=0755 owner=ubuntu
   become: yes
