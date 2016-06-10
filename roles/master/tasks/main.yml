@@ -5,7 +5,11 @@
 - name: Copy Spark, HDFS and Hive code base to Master Node
   unarchive: src='{{ inventory_dir }}/roles/master/files/spark_hdfs_hive.tar.gz' dest=/home/ubuntu/
 
-- name: Create directory for HDFS name node
-  file: path=/var/local/hadoop/hdfs/name state=directory mode=0755 owner=ubuntu
+- name: Create directory /mnt/u1 for HDFS name node
+  file: path=/mnt/u1/hadoop/name state=directory mode=0755 owner=ubuntu
   become: yes
   
+- name: Create directory /mnt/u2 for HDFS name node
+  file: path=/mnt/u2/hadoop/name state=directory mode=0755 owner=ubuntu
+  become: yes
+

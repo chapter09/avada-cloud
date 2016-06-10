@@ -1,0 +1,23 @@
+# vim:ft=ansible:
+---
+# This Playbook is used for instance flavor m3.x2large to mount 2xSSD
+
+- name: For m3.x2large, umount /dev/xvdb
+  command: 'umount /mnt'
+  become: yes
+
+- name: For m3.x2large, create /mnt/u1
+  file: path=/mnt/u1 state=directory mode=0755 owner=ubuntu
+  become: yes
+
+- name: For m3.x2large, create /mnt/u2
+  file: path=/mnt/u2 state=directory mode=0755 owner=ubuntu
+  become: yes
+
+- name: For m3.x2large, mount /dev/xvdb /mnt/u1
+  command: 'mount /dev/xvdb /mnt/u1'
+  become: yes
+
+- name: For m3.x2large, mount /dev/xvdc to /mnt/u2
+  command: 'mount /dev/xvdc /mnt/u2'
+  become: yes

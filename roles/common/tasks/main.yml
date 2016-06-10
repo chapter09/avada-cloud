@@ -59,6 +59,9 @@
 - name: Setup PATH
   lineinfile: dest=/home/ubuntu/.bashrc line="PATH=$PATH:/usr/lib/jvm/java-8-oracle/jre/bin/"
 
+- name: For m3.x2large 2xSSD
+  include: ec2_ssd_mount.yml
+
 - name: Install iostate
   apt: name=sysstat state=latest
   become: yes
