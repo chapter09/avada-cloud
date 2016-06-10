@@ -25,12 +25,6 @@
   <property>
     <name>dfs.data.dir</name>
     <value>/mnt/u1/hadoop/data, /mnt/u2/hadoop/data</value>
-    <description>Determines where on the local filesystem an DFS data node
-      should store its blocks.  If this is a comma-delimited
-      list of directories, then data will be stored in all named
-      directories, typically on different devices.
-      Directories that do not exist are ignored.
-    </description>
     <final>true</final>
   </property>
 
@@ -48,9 +42,14 @@
   </property>
 
   <property>
+    <name>dfs.datanode.hostname</name>
+  </property>
+
+  <property>
     <name>dfs.namenode.datanode.registration.ip-hostname-check</name>
     <value>false</value>
   </property>
+
   <property>
     <name>dfs.namenode.rpc-bind-host</name>
     <value>0.0.0.0</value>
@@ -70,7 +69,7 @@
 
   <property>                                                      
    <name>dfs.client.use.datanode.hostname</name>                 
-   <value>false</value>                                          
+   <value>true</value>                                          
    <description>Whether clients should use datanode hostnames when
      connecting to datanodes.                                    
    </description>                                                
@@ -78,14 +77,9 @@
 
   <property>
     <name>dfs.datanode.use.datanode.hostname</name>
-    <value>false</value>
+    <value>true</value>
     <description>Whether datanodes should use datanode hostnames when
       connecting to other datanodes for data transfer.
     </description>
-  </property>
-
-  <property>
-    <name>dfs.hosts.exclude</name>
-    <value>/home/ubuntu/hadoop-2.6.4/etc/hadoop/datanode-excludes</value>
   </property>
 </configuration>
