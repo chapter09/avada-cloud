@@ -25,7 +25,6 @@
 
     - name: Enforce HDFS hostname for each node
       lineinfile: dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/hdfs-site.xml 
-                  regexp='dfs.datanode.hostname'
                   insertafter='dfs.datanode.hostname'
                   line='    <value>{{ inventory_hostname }}</value>' 
                   state=present
@@ -35,7 +34,7 @@
   tasks:
     - name: Format HDFS namenode
       include: hdfs_init.yml 
-      #when: init is defined
+      when: init is defined
 
     - name: Start HDFS cluster
       command: sbin/start-dfs.sh chdir=/home/ubuntu/hadoop-2.6.4/
