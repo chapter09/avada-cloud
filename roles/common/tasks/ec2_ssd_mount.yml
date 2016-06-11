@@ -3,7 +3,13 @@
 # This Playbook is used for instance flavor m3.x2large to mount 2xSSD
 
 - name: For m3.x2large, umount /dev/xvdb
-  mount: name=/mnt/ src=/mnt/xvdb fstype=ext3 state=unmounted
+  command: umount /dev/xvdb 
+  ignore_errors: yes
+  become: yes
+
+- name: For m3.x2large, umount /dev/xvdb
+  command: umount /mnt
+  ignore_errors: yes
   become: yes
 
 - name: For m3.x2large, create /mnt/u1
