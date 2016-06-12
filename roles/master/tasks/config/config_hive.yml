@@ -2,3 +2,6 @@
 ---
 # This Playbook runs all the common plays in the deployment
 
+- name: Update Hive config file hive-site.xml
+  copy: src='{{ inventory_dir }}/roles/master/templates/hive/hive-site.xml'
+        dest=/home/ubuntu/hive-1.2.1/conf/hive-site.xml
