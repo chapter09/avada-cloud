@@ -72,6 +72,10 @@ In this playbook, we finish the following deployments:
     ansible-playbook tasks/ec2/ec2_admin.yml -e action=running
     ansible-playbook -i hosts tasks/cluster/cluster_start.yml
 
+###Sync configs on master node to all worker nodes
+
+    ansible-playbook -i hosts tasks/cluster/cluster_sync.yml
+
 ###Bugs
 ####SSH config
     
