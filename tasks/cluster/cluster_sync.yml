@@ -11,3 +11,6 @@
         - 'spark-1.6.1'
         - 'hadoop-2.6.4'
         - 'hive-1.2.1'
+
+    - name: Sync and render configuration file
+      include: "{{ inventory_dir }}/roles/worker/tasks/sync.yml"
