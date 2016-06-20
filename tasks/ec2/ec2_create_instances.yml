@@ -14,25 +14,23 @@
     - name: Include regions variable
       include_vars: '{{ inventory_dir }}/group_vars/regions.yml'
         
-    #- name: Launch a master instance
-    #  ec2:
-    #    keypair: '{{ keypair }}'
-    #    region: 'us-east-1'
-    #    group: '{{ security_group }}'
-    #    instance_type: '{{ instance_type }}'
-    #    instance_tags:
-    #      Name: master-hao
-    #    image: 'ami-fce3c696'
-    #    count: 1
-    #    wait: yes
-    #  register: ec2_master
+    - name: Launch a master instance
+      ec2:
+        keypair: '{{ keypair }}'
+        region: 'us-east-1'
+        group: '{{ security_group }}'
+        instance_type: '{{ instance_type }}'
+        instance_tags:
+          Name: master-hao
+          image: 'ami-fce3c696'
+          count: 1
+          wait: yes
+      register: ec2_master
 
-    #- name: Save ec2_master public ip to inventory
-    #  set_fact: master='{{ item }}'
-    #  with_flattened:
-    #    - '{{ ec2_master.instances }}'
-
-    - include: create_master.yml 
+    - name: Save ec2_master public ip to inventory
+      set_fact: master='{{ item }}'
+      with_flattened:
+        - '{{ ec2_master.instances }}'
 
     - name: Launch worker instances
       ec2: 

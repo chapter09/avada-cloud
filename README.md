@@ -21,6 +21,8 @@ Ansible playbook for Project Avada
     
     region: 'us-east-1'
 
+###Todo
+    * To support adding worker nodes incrementally to the existing cluster
 
 ###Initialize the AWS EC2
 
