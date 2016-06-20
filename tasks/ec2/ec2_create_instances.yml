@@ -22,9 +22,9 @@
         instance_type: '{{ instance_type }}'
         instance_tags:
           Name: master-hao
-          image: 'ami-fce3c696'
-          count: 1
-          wait: yes
+        image: 'ami-fce3c696'
+        count: 1
+        wait: yes
       register: ec2_master
 
     - name: Save ec2_master public ip to inventory

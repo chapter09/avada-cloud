@@ -6,22 +6,16 @@
   gather_facts: false
   connection: local
   tasks:
+    - name: Include regions variable
+      include_vars: '{{ inventory_dir }}/group_vars/regions.yml'
+
     - name: Collect instance information
       ec2_remote_facts:
-        region: '{{ item }}'
+        region: '{{ item.region }}'
         filters:
           instance.group-name: 'hao'
       with_items:
-        - 'us-east-1'
-        - 'us-west-1'
-        - 'us-west-2'
-        - 'eu-west-1'
-        - 'eu-central-1'
-        - 'ap-northeast-1'
-        - 'ap-northeast-2'
-        - 'ap-southeast-1'
-        - 'ap-southeast-2'
-        - 'sa-east-1'
+        - '{{ regions }}'
       register: ec2_info
 
     - name: Parsing ec2_info
