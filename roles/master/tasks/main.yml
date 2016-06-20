@@ -5,6 +5,9 @@
 - name: Copy Spark, HDFS and Hive code base to Master Node
   unarchive: src='{{ inventory_dir }}/roles/master/files/spark_hdfs_hive.tar.gz' dest=/home/ubuntu/
 
+- name: Install toolchain for Master Node
+  include: install_master_toolchain.yml
+
 - name: Create directory for Hive
   file: path=/mnt/hive state=directory mode=0755 owner=ubuntu
   become: yes

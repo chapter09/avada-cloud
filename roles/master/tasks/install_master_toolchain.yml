@@ -1,0 +1,7 @@
+# vim:ft=ansible:
+---
+# This Playbook builds Spark, Hive and HDFS on Master Node
+
+- name: Git clone benchmark
+  git: repo=git@github.com:chapter09/bdbench_spark_sql.git dest=/home/ubuntu/
+
