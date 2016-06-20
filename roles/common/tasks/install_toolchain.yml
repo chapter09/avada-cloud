@@ -1,0 +1,69 @@
+# vim:ft=ansible:
+---
+# This Playbook will install all basic tools on all machines
+
+- name: Init locale for new instance
+  apt: name=language-pack-en
+  become: yes
+
+- name: Update apt repo
+  apt: update_cache=yes
+  become: yes
+
+- name: Install git
+  apt: name=git
+  become: yes
+
+- name: Create the Downloads directory for all machines
+  file: path=/home/ubuntu/Downloads state=directory mode=0755 owner=ubuntu
+
+- name: Install Oracle Java 8 install python-software-properties
+  apt: name=software-properties-common state=latest
+  become: yes
+
+- name: Add Oracle Java Repository
+  apt_repository: repo='ppa:webupd8team/java'
+  become: yes
+
+- name: Accept Java 8 License
+  debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+  become: yes
+
+- name: Install Oracle Java 8
+  apt: name={{item}} state=latest
+  with_items:
+    - oracle-java8-installer
+    - ca-certificates
+    - oracle-java8-set-default
+  become: yes
+
+- name: Install iostate
+  apt: name=sysstat state=latest
+  become: yes
+
+- name: Create a directory for JvmTop
+  file: path=/home/ubuntu/jvmtop state=directory mode=0755 owner=ubuntu
+
+- name: Download JvmTop
+  get_url: url=https://github.com/patric-r/jvmtop/releases/download/0.8.0/jvmtop-0.8.0.tar.gz dest=/home/ubuntu/Downloads
+
+- name: Extract JvmTop
+  unarchive: src=/home/ubuntu/Downloads/jvmtop-0.8.0.tar.gz dest=/home/ubuntu/jvmtop/
+
+- name: Make JvmTop executable
+  file: path=/home/ubuntu/jvmtop/jvmtop.sh mode=0755
+
+- name: Install dependencies for nethogs
+  apt: name={{ item }}
+  with_items:
+    - build-essential
+    - libncurses5-dev
+    - libpcap-dev
+  become: yes
+
+- name: Git clone nethogs source code
+  git: repo=https://github.com/raboof/nethogs dest=/home/ubuntu/Downloads/nethogs
+
+- name: Compile nethogs
+  make: chdir=/home/ubuntu/Downloads/nethogs target=install
+  become: yes

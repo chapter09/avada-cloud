@@ -2,96 +2,17 @@
 ---
 # This Playbook runs all the common plays in the deployment
 
-- name: Init locale for new instance
-  apt: name=language-pack-en
-  become: yes
+- name: Install toolchain
+  include: install_toolchain.yml
+  
+- name: SSH configuration
+  include: ssh_config.yml
 
-- name: Update apt repo
-  apt: update_cache=yes
-  become: yes
-
-- name: Install git
-  apt: name=git
-  become: yes
-
-- name: Configure ssh_config
-  lineinfile: dest=/etc/ssh/ssh_config line='    StrictHostKeyChecking no\n    UserKnownHostsFile=/dev/null'
-  become: yes
-
-- name: Add SSH keys
-  copy: src=/home/ubuntu/.ssh/id_rsa dest=/home/ubuntu/.ssh/id_rsa owner=ubuntu mode=0600
-
-- name: Create the Downloads directory for all machines
-  file: path=/home/ubuntu/Downloads state=directory mode=0755 owner=ubuntu
-
-- name: Install Oracle Java 8 install python-software-properties
-  apt: name=software-properties-common state=latest
-  become: yes
-
-- name: Add Oracle Java Repository
-  apt_repository: repo='ppa:webupd8team/java'
-  become: yes
-
-- name: Accept Java 8 License
-  debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
-  become: yes
-
-- name: Install Oracle Java 8
-  apt: name={{item}} state=latest
-  with_items:
-    - oracle-java8-installer
-    - ca-certificates
-    - oracle-java8-set-default
-  become: yes
-
-- name: Setup JAVA_HOME
-  lineinfile: dest=/home/ubuntu/.bashrc line="export JAVA_HOME=/usr/lib/jvm/java-8-oracle/"
-
-- name: Setup SPARK_HOME
-  lineinfile: dest=/home/ubuntu/.bashrc line="export SPARK_HOME=/home/ubuntu/spark-1.6.1/"
-
-- name: Setup HADOOP_HOME
-  lineinfile: dest=/home/ubuntu/.bashrc line="export HADOOP_HOME=/home/ubuntu/hadoop-2.6.4/"
-
-- name: Setup HIVE_HOME
-  lineinfile: dest=/home/ubuntu/.bashrc line="export HIVE_HOME=/home/ubuntu/hive-1.2.1/"
-
-- name: Setup PATH
-  lineinfile: dest=/home/ubuntu/.bashrc line="PATH=$PATH:/usr/lib/jvm/java-8-oracle/jre/bin/"
+- name: Setup env variables
+  include: setup_env.yml
 
 - name: For m3.x2large 2xSSD
   include: ec2_ssd_mount.yml
-
-- name: Install iostate
-  apt: name=sysstat state=latest
-  become: yes
-
-- name: Create a directory for JvmTop
-  file: path=/home/ubuntu/jvmtop state=directory mode=0755 owner=ubuntu
-
-- name: Download JvmTop
-  get_url: url=https://github.com/patric-r/jvmtop/releases/download/0.8.0/jvmtop-0.8.0.tar.gz dest=/home/ubuntu/Downloads
-
-- name: Extract JvmTop
-  unarchive: src=/home/ubuntu/Downloads/jvmtop-0.8.0.tar.gz dest=/home/ubuntu/jvmtop/
-
-- name: Make JvmTop executable
-  file: path=/home/ubuntu/jvmtop/jvmtop.sh mode=0755
-
-- name: Install dependencies for nethogs
-  apt: name={{ item }}
-  with_items:
-    - build-essential
-    - libncurses5-dev
-    - libpcap-dev
-  become: yes
-
-- name: Git clone nethogs source code
-  git: repo=https://github.com/raboof/nethogs dest=/home/ubuntu/Downloads/nethogs
-
-- name: Compile nethogs
-  make: chdir=/home/ubuntu/Downloads/nethogs target=install
-  become: yes
 
 - name: Reboot all instances
   shell: sleep 2 && shutdown -r now "Ansible updates triggered"

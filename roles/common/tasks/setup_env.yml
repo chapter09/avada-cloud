@@ -1,0 +1,19 @@
+# vim:ft=ansible:
+---
+# This Playbook will setup all env variables and add them to .bashrc
+
+- name: Setup JAVA_HOME
+  lineinfile: dest=/home/ubuntu/.bashrc line="export JAVA_HOME=/usr/lib/jvm/java-8-oracle/"
+
+- name: Setup SPARK_HOME
+  lineinfile: dest=/home/ubuntu/.bashrc line="export SPARK_HOME=/home/ubuntu/spark-1.6.1/"
+
+- name: Setup HADOOP_HOME
+  lineinfile: dest=/home/ubuntu/.bashrc line="export HADOOP_HOME=/home/ubuntu/hadoop-2.6.4/"
+
+- name: Setup HIVE_HOME
+  lineinfile: dest=/home/ubuntu/.bashrc line="export HIVE_HOME=/home/ubuntu/hive-1.2.1/"
+
+- name: Setup PATH
+  lineinfile: dest=/home/ubuntu/.bashrc line="PATH=$PATH:/usr/lib/jvm/java-8-oracle/jre/bin/"
+

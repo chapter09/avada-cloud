@@ -1,0 +1,10 @@
+# vim:ft=ansible:
+---
+# This Playbook will configure SSH
+
+- name: Configure ssh_config
+  lineinfile: dest=/etc/ssh/ssh_config line='    StrictHostKeyChecking no\n    UserKnownHostsFile=/dev/null'
+  become: yes
+
+- name: Add SSH keys
+  copy: src=/home/ubuntu/.ssh/id_rsa dest=/home/ubuntu/.ssh/id_rsa owner=ubuntu mode=0600
