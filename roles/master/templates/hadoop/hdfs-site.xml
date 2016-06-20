@@ -19,12 +19,12 @@
 <configuration>
   <property>
     <name>dfs.namenode.name.dir</name>
-    <value>/mnt/u1/hadoop/name, /mnt/u2/hadoop/name</value>
+    <value>/mnt/hadoop/name</value>
   </property>
 
   <property>
     <name>dfs.data.dir</name>
-    <value>/mnt/u1/hadoop/data, /mnt/u2/hadoop/data</value>
+    <value>/mnt/hadoop/data</value>
     <final>true</final>
   </property>
 

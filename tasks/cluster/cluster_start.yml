@@ -19,10 +19,10 @@
 - hosts: all
   remote_user: ubuntu
   tasks:
-    - name: Mount /dev/xvdf /mnt
-      mount: name=/mnt/ src=/dev/xvdf fstype=ext4 state=mounted
-      become: yes
-      when: init is undefined
+    #- name: Mount /dev/xvdf /mnt
+    #  mount: name=/mnt/ src=/dev/xvdf fstype=ext4 state=mounted
+    #  become: yes
+    #  when: init is undefined
 
     - name: Enforce HDFS hostname for each node
       lineinfile: dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/hdfs-site.xml 
