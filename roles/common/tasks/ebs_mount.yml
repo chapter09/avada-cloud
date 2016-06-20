@@ -1,0 +1,24 @@
+# vim:ft=ansible:
+---
+# This Playbook is used for instance flavor m3.x2large to mount 2xSSD
+
+- name: Format attached EBS volume /dev/xvdf
+  filesystem: fstype=ext4 dev=/dev/xvdf
+  when: init is defined
+  become: yes
+
+- name: Mount /dev/xvdf /mnt
+  mount: name=/mnt/ src=/dev/xvdf fstype=ext4 state=mounted
+  become: yes
+
+- name: Create directory HDFS name node
+  file: path=/mnt/hadoop/name state=directory mode=0755 owner=ubuntu
+  become: yes
+
+- name: Create directory for HDFS name node
+  file: path=/mnt/hadoop/data state=directory mode=0755 owner=ubuntu
+  become: yes
+
+- name: Create directory for HDFS name node
+  file: path=/mnt/hadoop/data state=directory mode=0755 owner=ubuntu
+  become: yes
