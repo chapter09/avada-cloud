@@ -1,0 +1,7 @@
+# vim:ft=ansible:
+---
+
+keypair: hao-savi-rsa
+security_group: hao
+# instance_type: m3.2xlarge
+instance_type: t2.micro
