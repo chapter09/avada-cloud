@@ -1,0 +1,11 @@
+# vim:ft=ansible:
+---
+
+- hosts: localhost
+  vars_files:
+    - '{{ inventory_dir }}/regions.yml'
+  tasks:
+    - name: show variable in regions
+      debug: msg='{{ item.region }} and {{ item.image }}'
+      with_items:
+        - '{{ regions }}'
