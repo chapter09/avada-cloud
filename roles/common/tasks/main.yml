@@ -11,8 +11,8 @@
 - name: Setup env variables
   include: setup_env.yml
 
-- name: For m3.x2large 2xSSD
-  include: ec2_ssd_mount.yml
+- name: EBS volumes
+  include: ebs_mount.yml init='yes'
 
 - name: Reboot all instances
   shell: sleep 2 && shutdown -r now "Ansible updates triggered"

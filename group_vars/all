@@ -5,3 +5,7 @@ keypair: hao-savi-rsa
 security_group: hao
 # instance_type: m3.2xlarge
 instance_type: t2.micro
+volume_size: 100
+volume_type: gp2
+delete_on_termination: true
+device_name: /dev/xvdf

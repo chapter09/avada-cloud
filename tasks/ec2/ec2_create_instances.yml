@@ -4,10 +4,6 @@
 
 - hosts: localhost
   vars:
-    keypair: hao-savi-rsa
-    security_group: hao
-    # instance_type: m3.2xlarge
-    instance_type: t2.micro
     vm_num: '{{ num }}'
 
   tasks:
@@ -23,6 +19,11 @@
         instance_tags:
           Name: master-hao
         image: 'ami-fce3c696'
+        volumes:
+          - device_name: '{{ device_name }}'
+            volume_type: '{{ volume_type }}'
+            volume_size: '{{ volume_size }}'
+            delete_on_termination: '{{ delete_on_termination }}'
         count: 1
         wait: yes
       register: ec2_master
@@ -41,6 +42,11 @@
         instance_tags:
            Name: worker-hao
         image: '{{ item.image }}'
+        volumes:
+          - device_name: '{{ device_name }}'
+            volume_type: '{{ volume_type }}'
+            volume_size: '{{ volume_size }}'
+            delete_on_termination: '{{ delete_on_termination }}'
         count: '{{ vm_num }}'
         wait: yes
       with_items:

@@ -19,8 +19,9 @@
 - hosts: all
   remote_user: ubuntu
   tasks:
-    - name: For m3.x2large 2xSSD
-      include: "{{ inventory_dir }}/roles/common/tasks/ec2_ssd_mount.yml" 
+    - name: Mount /dev/xvdf /mnt
+      mount: name=/mnt/ src=/dev/xvdf fstype=ext4 state=mounted
+      become: yes
       when: init is undefined
 
     - name: Enforce HDFS hostname for each node
