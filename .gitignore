@@ -6,3 +6,4 @@
 *.retry
 
 hosts
+group_vars/master
