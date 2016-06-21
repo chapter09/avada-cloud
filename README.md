@@ -22,7 +22,8 @@ Ansible playbook for Project Avada
     region: 'us-east-1'
 
 ###Todo
-    * To support adding worker nodes incrementally to the existing cluster
+    * To support adding worker nodes incrementally to the existing cluster.
+    * Promote the speed of ansible playbook, e.g., introduce `async`.
 
 ###Initialize the AWS EC2
 
