@@ -20,6 +20,13 @@
 
     - name: Parsing ec2_info
       set_fact: instance_list={{ ec2_info.results | map(attribute='instances') | list }}
+
+    - name: Set async flag
+      set_fact: wait='no'
+
+    - name: Set async flag
+      set_fact: wait='yes'
+      when: action == 'running'
    
     - name: Execute EC2 admin operation to all instances
       local_action:
@@ -27,10 +34,10 @@
         instance_ids: '{{ item.id }}'
         region: '{{ item.region }}'
         state: '{{ action }}'
-        wait: yes
+        wait: '{{ wait }}'
       with_flattened:
         - '{{ instance_list }}'
 
     - name: Re-generate inventory file hosts after restart
       include: ec2_restore.yml
-      when: action =='running'
+      when: action == 'running'
