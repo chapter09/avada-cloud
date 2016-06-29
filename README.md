@@ -32,10 +32,11 @@ Ansible playbook for Project Avada
 ####1.1 Configuration file
 Please modify the configuration files based on the templates first. Files needed to be modified are:
   
+    hosts.template
     group_vars
-    ├── all.template
-    ├── master.template
-    └── regions.template
+      ├── all.template
+      ├── master.template
+      └── regions.template
 
 ####1.2 Deploy key-pair on all regions
 
