@@ -67,6 +67,8 @@ in `group_vars/all` the `vm_num` specifies number of workers in each region. `ec
     ansible-playbook -i hosts site.yml
     ansible-playbook -i hosts tasks/cluster/cluster_start.yml -e init=1
 
+`init=1` is necessary. With it, the HDFS will format its namenode. **If you are not running HDFS for the first time (e.g., after restart the cluster), please remove it!**
+
 In this playbook, we finish the following deployments:
 
 1. Upload the source code of Spark, Hive and HDFS to EC2 `master` node. [ by `roles/master/main.yml` ]
