@@ -85,7 +85,7 @@ Leave for sleep?
 
 #####Stop
 
-    ansible-playbook -i tasks/ec2/ec2_admin.yml -e action=stopped
+    ansible-playbook -i hosts tasks/ec2/ec2_admin.yml -e action=stopped
 
 #####Start
     
@@ -96,8 +96,8 @@ Leave for sleep?
 
     ansible-playbook -i hosts tasks/cluster/cluster_sync.yml
 
-###Bugs
-####SSH config
+###4 Bugs
+####4.1 SSH config
     
     ssh -C -q -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=no -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o ConnectTimeout=10 -o ControlPath=/home/ubuntu/.ansible/cp/ansible-ssh-%h-%p-%r ec2-54-67-16-133.us-west-1.compute.amazonaws.com
     
