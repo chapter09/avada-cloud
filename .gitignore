@@ -8,3 +8,5 @@
 
 hosts
 group_vars/master
+group_vars/all
+group_vars/regions

@@ -7,7 +7,7 @@
   connection: local
   tasks:
     - name: Include regions variable
-      include_vars: '{{ inventory_dir }}/group_vars/regions.yml'
+      include_vars: '{{ inventory_dir }}/group_vars/regions'
 
     - name: Collect instance information
       ec2_remote_facts:
