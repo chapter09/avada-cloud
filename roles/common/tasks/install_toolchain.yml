@@ -56,7 +56,9 @@
            dest=/home/ubuntu/Downloads
 
 - name: Extract JvmTop
-  unarchive: src=/home/ubuntu/Downloads/jvmtop-0.8.0.tar.gz dest=/home/ubuntu/jvmtop/
+  unarchive: copy=no 
+             src=/home/ubuntu/Downloads/jvmtop-0.8.0.tar.gz 
+             dest=/home/ubuntu/jvmtop/
 
 - name: Make JvmTop executable
   file: path=/home/ubuntu/jvmtop/jvmtop.sh mode=0755
