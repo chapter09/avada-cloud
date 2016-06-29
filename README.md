@@ -13,9 +13,13 @@ Ansible playbook for Project Avada
     Spark: 1.6.1
     Hive: 1.2.1
 
+#####Spark+Hive+HDFS package
+To enable all the automation ability, please place the software package as below:
+  
+    avada-playbook/roles/master/files/spark_hdfs_hive.tar.gz
 
-#####OS
-    
+
+#####VM OS
     username: ubuntu
 
 #####EC2
