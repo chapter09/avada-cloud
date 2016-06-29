@@ -59,9 +59,9 @@ in `group_vars/all` the `vm_num` specifies number of workers in each region. `ec
     ansible-playbook -i hosts tasks/ec2/ec2_admin.yml -e action=running
     ansible-playbook -i hosts tasks/ec2/ec2_admin.yml -e action=absent
 
-###How to start the whole Spark+Hive+HDFS cluster?
+###3 Spark+Hive+HDFS Cluster Management
 
-####Start
+####3.1 Initializa cluster
 
     ansible-playbook -i hosts site.yml
     ansible-playbook -i hosts tasks/cluster/cluster_start.yml -e init=1
