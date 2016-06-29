@@ -74,23 +74,25 @@ In this playbook, we finish the following deployments:
 1. Upload the source code of Spark, Hive and HDFS to EC2 `master` node. [ by `roles/master/main.yml` ]
 2. Update corresponding configuration of Spark, Hive and HDFS (with public IP of `master` and `workers`. [ by `roles/master/config.yml` ]
 3. Sync source code and configuration to all `workers`. [ by `roles/worker/sync.yml` ]
+4. Start both HDFS and Spark.
 
-####Stop
+####3.2 Stop the cluster
+Leave for sleep?
 
-    ansible-playbook -i hosts tasks/cluster/cluster_stop.yml
+    ansible-playbook -i hosts tasks/ec2/ec2_admin.yml -e action=stopped
 
-###How to restart the whole Spark+Hive+HDFS cluster?
+####3.3 Restart the whole Spark+Hive+HDFS cluster
 
-####Stop
+#####Stop
 
-    ansible-playbook tasks/ec2/ec2_admin.yml -e action=stopped
+    ansible-playbook -i tasks/ec2/ec2_admin.yml -e action=stopped
 
-####Start
+#####Start
     
     ansible-playbook tasks/ec2/ec2_admin.yml -e action=running
     ansible-playbook -i hosts tasks/cluster/cluster_start.yml
 
-###Sync configs on master node to all worker nodes
+####3.4 Sync configs on master node to all worker nodes
 
     ansible-playbook -i hosts tasks/cluster/cluster_sync.yml
 
