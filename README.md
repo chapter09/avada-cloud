@@ -27,7 +27,7 @@ Ansible playbook for Project Avada
 * To support adding worker nodes incrementally to the existing cluster.
 * Promote the speed of ansible playbook, e.g., introduce `async`.
 
-###1. Initialize the AWS EC2
+###1. AWS EC2 Initialization
 
 ####1.1 Configuration file
 Please modify the configuration files based on the templates first. Files needed to be modified are:
@@ -46,7 +46,7 @@ Please modify the configuration files based on the templates first. Files needed
   
     ansible-playbook tasks/ec2/ec2_deploy_securitygroup.yml
 
-###2. Instances Management
+###2. EC2 Instances Management
   
 ####2.1 How to create instances? 
     ansible-playbook -i hosts tasks/ec2/ec2_create_instances.yml

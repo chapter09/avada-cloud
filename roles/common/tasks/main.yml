@@ -22,4 +22,4 @@
   ignore_errors: true
 
 - name: Waiting for all instances to come back
-  local_action: wait_for port=22 host={{ inventory_hostname }} state=started
+  include: "{{ inventory_dir }}/tasks/ec2/ec2_live_text.yml"

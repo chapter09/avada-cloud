@@ -1,0 +1,6 @@
+# vim:ft=ansible:
+---
+# This Playbook test whether the instance is alive
+
+- name: Waiting for all instances to come back
+  local_action: wait_for port=22 host={{ inventory_hostname }} state=started
