@@ -7,4 +7,4 @@
   become: yes
 
 - name: Add SSH keys
-  copy: src=/home/ubuntu/.ssh/id_rsa dest=/home/ubuntu/.ssh/id_rsa owner=ubuntu mode=0600
+  copy: src='{{ private_key_path }}' dest=/home/ubuntu/.ssh/id_rsa owner=ubuntu mode=0600
