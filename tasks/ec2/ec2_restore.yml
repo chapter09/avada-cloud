@@ -16,7 +16,7 @@
   set_fact: instance_list={{ ec2_info.results | map(attribute='instances') | list }}
 
 - name: setup master
-  set_fact: master="{% for instances in instance_list %}{% for instance in instances %}{% if instance.tags.Name == 'master-hao' %}{{ instance }}{% endif %}{% endfor %}{% endfor %}"
+  set_fact: master="{% for instances in instance_list %}{% for instance in instances %}{% if instance.tags.Name == master-name %}{{ instance }}{% endif %}{% endfor %}{% endfor %}"
 
 - name: setup master
   set_fact: worker_list='{{ instance_list }}'

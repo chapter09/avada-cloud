@@ -4,7 +4,7 @@
 [worker]
 {% for region in worker_list %}
 {% for worker in region %}
-{% if worker.tags.Name == 'worker-hao' %}
+{% if worker.tags.Name == worker_name %}
 {{ worker.public_dns_name }} {{ '\t' }} # {{ worker.region }}
 {% endif %}
 {% endfor %}{% endfor %}
