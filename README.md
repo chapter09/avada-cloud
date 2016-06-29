@@ -1,28 +1,28 @@
 #avada-playbook
 Ansible playbook for Project Avada
 
-###Requirements
+####Requirements
 
 * Ansible 2.0 (or above)
 * python-boto (latest)
 
-### Notes for hardcode
-####Version
+#### Notes for hardcode
+#####Version
     
     Hadoop: 2.6.4
     Spark: 1.6.1
     Hive: 1.2.1
 
 
-####OS
+#####OS
     
     username: ubuntu
 
-####EC2
-    
+#####EC2
+Master instance will be always placed at: 
     region: 'us-east-1'
 
-###Todo
+####Todo
 
 * To support adding worker nodes incrementally to the existing cluster.
 * Promote the speed of ansible playbook, e.g., introduce `async`.
