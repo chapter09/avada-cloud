@@ -22,4 +22,4 @@
   ignore_errors: true
 
 - name: Waiting for all instances to come back
-  include: "{{ inventory_dir }}/tasks/ec2/ec2_live_text.yml"
+  include: "{{ inventory_dir }}/tasks/ec2/ec2_live_test.yml"
