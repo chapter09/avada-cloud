@@ -18,6 +18,12 @@ To enable all the automation ability, please place the software package as below
   
     avada-playbook/roles/master/files/spark_hdfs_hive.tar.gz
 
+This package will be extracted to the `HOME` directory, and the structure is as below:
+
+    .
+    ├── hadoop-2.6.4
+    ├── hive-1.2.1
+    └── spark-1.6.1
 
 #####VM OS
     username: ubuntu
