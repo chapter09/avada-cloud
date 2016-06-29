@@ -11,7 +11,7 @@
       local_action:
         module: ec2
         instance_tags:
-          Name: master-hao
+          Name: '{{ master_name }}'
         region: 'us-east-1'
         state: 'stopped'
 
@@ -19,7 +19,7 @@
       local_action:
         module: ec2
         instance_tags:
-          Name: worker-hao
+          Name: '{{ worker_name }}'
         region: '{{ item }}'
         state: 'stopped'
       with_items:        

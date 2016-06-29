@@ -9,7 +9,7 @@
   - name: Create the security group for all regions
     local_action:
       module: ec2_group
-      name: hao
+      name: '{{ security_group}}'
       description: "ansible generated group"
       region: "{{ item }}"
       rules:

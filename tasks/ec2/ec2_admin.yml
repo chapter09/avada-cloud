@@ -13,7 +13,7 @@
       ec2_remote_facts:
         region: '{{ item.region }}'
         filters:
-          instance.group-name: 'hao'
+          instance.group-name: '{{ security_group }}'
       with_items:
         - '{{ regions }}'
       register: ec2_info

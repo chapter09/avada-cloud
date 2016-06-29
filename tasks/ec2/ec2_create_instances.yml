@@ -14,7 +14,7 @@
         group: '{{ security_group }}'
         instance_type: '{{ instance_type }}'
         instance_tags:
-          Name: master-hao
+          Name: '{{ master_name }}'
         image: 'ami-fce3c696'
         volumes:
           - device_name: '{{ device_name }}'
@@ -37,7 +37,7 @@
         group: '{{ security_group }}'
         instance_type: '{{ instance_type }}'
         instance_tags:
-           Name: worker-hao
+          Name: '{{ worker_name }}'
         image: '{{ item.image }}'
         volumes:
           - device_name: '{{ device_name }}'

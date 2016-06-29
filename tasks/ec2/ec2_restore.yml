@@ -7,7 +7,7 @@
   ec2_remote_facts:
     region: '{{ item }}'
     filters:
-      instance.group-name: 'hao'
+      instance.group-name: '{{ security_group }}'
   with_items:
     - 'us-east-1'
     - 'us-west-1'
