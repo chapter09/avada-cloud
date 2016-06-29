@@ -24,6 +24,7 @@ To enable all the automation ability, please place the software package as below
 
 #####EC2
 Master instance will be always placed at: 
+
     region: 'us-east-1'
 
 ####Todo
