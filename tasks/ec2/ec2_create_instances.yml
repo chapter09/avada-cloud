@@ -56,7 +56,7 @@
 
     #- debug: msg='{{ master.public_ip }}'
 
-    #- debug: msg='{{ worker_list }}'
+    - debug: msg='{{ worker_list }}'
 
     - name: Generate inventory file hosts
       template: src='{{ inventory_dir }}/templates/hosts.j2' dest='{{ inventory_dir }}/hosts'

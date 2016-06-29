@@ -3,13 +3,13 @@
 
 keypair: siqi-savi-rsa
 security_group: siqi
-instance_type: t2.micro
+instance_type: m4.large
 volume_size: 100
 volume_type: gp2
 delete_on_termination: true
 device_name: /dev/xvdf
-core_num: 6
-mem_size: 24G
+core_num: 2
+mem_size: 6G
 vm_num: 1
 master_name: master-siqi
 worker_name: worker-siqi
