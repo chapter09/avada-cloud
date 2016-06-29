@@ -46,13 +46,14 @@ Please modify the configuration files based on the templates first. Files needed
   
     ansible-playbook tasks/ec2/ec2_deploy_securitygroup.yml
 
-###How to launch instances?
+###2. Instances Management
   
+####2.1 How to create instances? 
     ansible-playbook -i hosts tasks/ec2/ec2_create_instances.yml
 
 in `group_vars/all` the `vm_num` specifies number of workers in each region. `ec2_launch.yml` will generate `hosts` file automatically.
 
-###How to stop, restart and terminate?
+####2.2 How to stop, restart and terminate instances?
 
     ansible-playbook -i hosts tasks/ec2/ec2_admin.yml -e action=stopped
     ansible-playbook -i hosts tasks/ec2/ec2_admin.yml -e action=running
