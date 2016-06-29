@@ -1,16 +1,17 @@
 # vim:ft=ansible:
 ---
 
-keypair: siqi-savi-rsa
-security_group: siqi
-instance_type: m4.large
+keypair: hao-savi-rsa
+security_group: hao
+instance_type: m4.2xlarge
+# instance_type: t2.micro
 volume_size: 100
 volume_type: gp2
 delete_on_termination: true
 device_name: /dev/xvdf
-core_num: 2
-mem_size: 6G
-vm_num: 1
-master_name: master-siqi
-worker_name: worker-siqi
-public_key: ssh-dss AAAAB3NzaC1kc3MAAACBAJZHnazVkBSKW3n4fp8UVKSvd+vT8O7nMwVSErZWX2GBcXlsOdY5qsGfV8Kr5DEBnUvdS2Wiy5NmxHZlRoD1mFyldjBGOnoI/fifH4yfG/C89+1Y7c9dlDnVocoBtNkff9XHkR9veYCtnFeD6zcYTp/ABtFfd0esa+v7JSaFQCnzAAAAFQDYUy9SuO0qiLawcnrBjdHZELyCbQAAAIAN5qKOOorjLjI64n/NvOG9XKSNntJXURSfqNKJyJGrqQ0ZXwR+k9RdWSLNEXw/S4XPE4/ubZDGUiFI7QeAmZiwmYnMaiee81ULaP1/IWhXj3co/CUL6Ees/76Q3KlE+j8kbHIYRiPAclvYqMoMclhxzdWwH+ldhR0fE234APx+TwAAAIBxPQp+Z9j9V9AIPIGbSQ+UP42qORfTyK8NNj/CAvqco7hk3oRL5Q1PoYsxOmA5f/LhutHh9hNb6EX2Eh+hk2a1/W0MyiCkg5ue5kdL+9M4+wYJB5TX8C4hWLEj/Cp6NptKZV9m4j38lOH9n0bXGdKw6iRGpa+ouxgPRLaIODmmpg== crystal@inside-83-42.wireless.utoronto.ca 
+core_num: 6
+mem_size: 24G
+vm_num: 4
+master_name: master-hao
+worker_name: worker-hao
+public_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDwbjHmba7dp4AifBKOuTBakO9KEE6Kd8I3d16jsS1sDYW0b0C6XcLrCYyeaMhMj3CMGVQRgvIEJ7Tc8yefQfvBGXWPXnRQF2kXD+SfBDyQYutnHF6dPGSazdFHGCWhL+ND4vITy9DxG8+fL7QlnKySCnaLapirqy69N0el2mJpOm8BbEshVn/Lb7mpKdrziRiYeGVvB1LTes9y/+X90cwSD4qD1OQHWZdOQkCX8ov/6sswj9nQZoC87TfBiAGaCmI1GHEzip0xuBAd+kxVxsfWpZoNk8a7VSK5sUfl7lnhEtpP1wfc+Rd13QWYTgfs3Jwhy0SL+EdM15Lutm2kodLh hao@hao-yarn-2'

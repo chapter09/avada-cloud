@@ -5,10 +5,10 @@ regions:
   - { region: 'us-east-1', image: 'ami-fce3c696'}
   - { region: 'us-west-1', image: 'ami-06116566'}
   - { region: 'us-west-2', image: 'ami-9abea4fb'}
-#  - { region: 'eu-west-1', image: 'ami-f95ef58a'}
-#  - { region: 'eu-central-1', image: 'ami-87564feb'}
-#  - { region: 'ap-northeast-1', image: 'ami-a21529cc'}
-#  - { region: 'ap-northeast-2', image: 'ami-09dc1267'}
-#  - { region: 'ap-southeast-1', image: 'ami-25c00c46'}
-#  - { region: 'ap-southeast-2', image: 'ami-6c14310f'}
+  - { region: 'eu-west-1', image: 'ami-f95ef58a'}
+  - { region: 'eu-central-1', image: 'ami-87564feb'}
+  - { region: 'ap-northeast-1', image: 'ami-a21529cc'}
+  - { region: 'ap-northeast-2', image: 'ami-09dc1267'}
+  - { region: 'ap-southeast-1', image: 'ami-25c00c46'}
+  - { region: 'ap-southeast-2', image: 'ami-6c14310f'}
   #- { region: 'sa-east-1', image: 'ami-0fb83963'}

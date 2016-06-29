@@ -4,7 +4,7 @@ Ansible playbook for Project Avada
 ###Requirements
 
 * Ansible 2.0 (or above)
-* boto-latest
+* python-boto (latest)
 
 ### Notes for hardcode
 ####Version

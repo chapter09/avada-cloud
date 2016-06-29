@@ -8,7 +8,7 @@
     ec2_key:
       name: '{{ keypair }}'
       region: '{{ item }}'
-      key_material: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+raXA87g4XBrZPSNblfJGCmW8b2ZS0gec/AAq5EDPAHkNpg5eRAcqXi8HFJrmJm9cHeTVwP+OdY922e6Yt9mdmCtjOUe9z4nh6NRl9ktBU0HQooB2ZOl+/8SqpKmX7RzUQda3FincH2zUBihA0LHC7JjFhAaYj5Jv6rBjar3VTa64tkz2T5e4lw5papcQRsLCcCb/lFpe6nsakS0pH6D7e/YbBV185Guf6Yxm3dNAee/IbdbWn2ERgc9hEyCN+Y1ARMAob94/E20dO5emeyt1fwRHduLodw1aOam8F0pMit+AtaqnMs/XSfCmqiGyYmAXqeyNyHB4clvaan1mAJ/5 crystal@inside-92-17.wireless.utoronto.ca'
+      key_material: '{{ public_key }}'
     with_items:
       - us-east-1
       - us-west-1
