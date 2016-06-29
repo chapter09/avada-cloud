@@ -41,7 +41,7 @@ Ansible playbook for Project Avada
   
     ansible-playbook -i hosts tasks/ec2/ec2_create_instances.yml
 
-in `group_var/vall` the `vm_num` specifies number of workers in each region. `ec2_launch.yml` will generate `hosts` file automatically.
+in `group_vars/all` the `vm_num` specifies number of workers in each region. `ec2_launch.yml` will generate `hosts` file automatically.
 
 ###How to stop, restart and terminate?
 
