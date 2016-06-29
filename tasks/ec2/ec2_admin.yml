@@ -21,10 +21,10 @@
     - name: Parsing ec2_info
       set_fact: instance_list={{ ec2_info.results | map(attribute='instances') | list }}
 
-    - name: Set async flag
+    - name: Set async flag True
       set_fact: wait='no'
 
-    - name: Set async flag
+    - name: Set async flag False
       set_fact: wait='yes'
       when: action == 'running'
    
