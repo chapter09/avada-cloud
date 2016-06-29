@@ -38,6 +38,7 @@ Please modify the configuration files based on the templates first. Files needed
       ├── master.template
       └── regions.template
 
+`hosts.template` is empty, just execute `cp hosts.template hosts`. 
 ####1.2 Deploy key-pair on all regions
 
     ansible-playbook tasks/ec2/ec2_deploy_keys.yml
