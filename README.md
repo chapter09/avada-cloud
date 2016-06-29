@@ -32,11 +32,11 @@ Ansible playbook for Project Avada
 ####1.1 Configuration file
 Please modify the configuration file first. The file is located at `group_vars/all` 
 
-####Deploy key-pair on all regions
+####1.2 Deploy key-pair on all regions
 
     ansible-playbook tasks/ec2/ec2_deploy_keys.yml
 
-####Create a security group on all regions
+####1.3 Create a security group on all regions
   
     ansible-playbook tasks/ec2/ec2_deploy_securitygroup.yml
 
