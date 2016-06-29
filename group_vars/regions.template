@@ -11,4 +11,4 @@ regions:
   - { region: 'ap-northeast-2', image: 'ami-09dc1267'}
   - { region: 'ap-southeast-1', image: 'ami-25c00c46'}
   - { region: 'ap-southeast-2', image: 'ami-6c14310f'}
-  #- { region: 'sa-east-1', image: 'ami-0fb83963'}
+  - { region: 'sa-east-1', image: 'ami-0fb83963'}
