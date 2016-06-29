@@ -27,7 +27,10 @@ Ansible playbook for Project Avada
 * To support adding worker nodes incrementally to the existing cluster.
 * Promote the speed of ansible playbook, e.g., introduce `async`.
 
-###Initialize the AWS EC2
+###1. Initialize the AWS EC2
+
+####1.1 Configuration file
+Please modify the configuration file first. The file is located at `group_vars/all` 
 
 ####Deploy key-pair on all regions
 
