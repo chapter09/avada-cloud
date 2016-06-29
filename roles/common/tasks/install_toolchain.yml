@@ -81,7 +81,9 @@
            dest=/home/ubuntu/Downloads
 
 - name: Extract iftop
-  unarchive: src=/home/ubuntu/Downloads/iftop-1.0pre4.tar.gz dest=/home/ubuntu/Downloads/
+  unarchive: copy=no 
+             src=/home/ubuntu/Downloads/iftop-1.0pre4.tar.gz 
+             dest=/home/ubuntu/Downloads/
 
 - name: Configure iftop
   command: ./configure chdir=/home/ubuntu/Downloads/iftop-1.0pre4 
