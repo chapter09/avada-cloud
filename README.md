@@ -30,7 +30,12 @@ Ansible playbook for Project Avada
 ###1. Initialize the AWS EC2
 
 ####1.1 Configuration file
-Please modify the configuration file first. The file is located at `group_vars/all` 
+Please modify the configuration files based on the templates first. Files needed to be modified are:
+  
+  group_vars
+  ├── all.template
+  ├── master.template
+  └── regions.template
 
 ####1.2 Deploy key-pair on all regions
 
