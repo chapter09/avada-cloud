@@ -6,3 +6,5 @@
   git: repo=git@github.com:chapter09/bdbench_spark_sql.git 
        dest=/home/ubuntu/bdbench_spark_sql
        accept_hostkey=yes
+  ignore_errors: yes
+
