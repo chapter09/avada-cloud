@@ -25,7 +25,7 @@ This package will be extracted to the `HOME` directory, and the structure is as 
     ├── hive-1.2.1
     └── spark-1.6.1
 
-If you want to run Spark **across regions of EC2**, please notice that a patch will be required to apply to `spark-1.6.1`.
+If you want to run Spark **across regions of EC2**, please notice that a patch will be required to apply to `spark-1.6.1`. You could apply the patch `regions.patch` to your directory `spark-1.6.1/core/src`. 
 
 Please refer to [https://github.com/apache/spark/pull/12240/files](https://github.com/apache/spark/pull/12240/files)
 
