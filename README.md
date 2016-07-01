@@ -1,12 +1,14 @@
 #avada-playbook
 Ansible playbook for Project Avada
 
-####Requirements
+###0. Requirements
+
+####0.1 Dependencies
 
 * Ansible 2.0 (or above)
 * python-boto (latest)
 
-#### Notes for hardcode
+####0.2 Notes for hardcode
 #####Version
     
     Hadoop: 2.6.4
@@ -37,7 +39,7 @@ Master instance will be always placed at:
 
     region: 'us-east-1'
 
-####Todo
+####0.3 Todo
 
 * To support adding worker nodes incrementally to the existing cluster.
 * Promote the speed of ansible playbook, e.g., introduce `async`.
