@@ -47,7 +47,7 @@ Master instance will be always placed at:
 ###1. AWS EC2 Initialization
 
 ####1.1 Configuration file
-To enable AWS EC2 access, please add `env` variable `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to your environment or user profile.
+First of all, to enable AWS EC2 access, please add `env` variable `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to your environment or user profile.
 
 Please modify the configuration files based on the templates first. Files needed to be modified are:
   
