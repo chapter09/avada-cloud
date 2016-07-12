@@ -1,106 +1,130 @@
-diff -Naur spark-1.6.1/core/src/main/scala/org/apache/spark/network/netty/NettyBlockTransferService.scala /home/ubuntu/Downloads/spark-1.6.1/core/src/main/scala/org/apache/spark/network/netty/NettyBlockTransferService.scala
---- spark-1.6.1/core/src/main/scala/org/apache/spark/network/netty/NettyBlockTransferService.scala	2016-06-13 15:40:51.069198040 -0400
-+++ /home/ubuntu/Downloads/spark-1.6.1/core/src/main/scala/org/apache/spark/network/netty/NettyBlockTransferService.scala	2016-02-26 23:40:50.000000000 -0500
-@@ -37,11 +37,7 @@
+diff -Naur -x '*.class' -x '*.iml' -x '*.xml' /home/ubuntu/Downloads/spark-1.6.1/streaming/src/test/scala/org/apache/spark/streaming/ReceivedBlockHandlerSuite.scala spark-1.6.1/streaming/src/test/scala/org/apache/spark/streaming/ReceivedBlockHandlerSuite.scala
+--- /home/ubuntu/Downloads/spark-1.6.1/streaming/src/test/scala/org/apache/spark/streaming/ReceivedBlockHandlerSuite.scala	2016-02-26 23:40:50.000000000 -0500
++++ spark-1.6.1/streaming/src/test/scala/org/apache/spark/streaming/ReceivedBlockHandlerSuite.scala	2016-06-13 15:50:12.601193453 -0400
+@@ -255,7 +255,7 @@
+       conf: SparkConf,
+       name: String = SparkContext.DRIVER_IDENTIFIER): BlockManager = {
+     val memManager = new StaticMemoryManager(conf, Long.MaxValue, maxMem, numCores = 1)
+-    val transfer = new NettyBlockTransferService(conf, securityMgr, numCores = 1)
++    val transfer = new NettyBlockTransferService(conf, securityMgr, "localhost", numCores = 1)
+     val blockManager = new BlockManager(name, rpcEnv, blockManagerMaster, serializer, conf,
+       memManager, mapOutputTracker, shuffleManager, transfer, securityMgr, 0)
+     memManager.setMemoryStore(blockManager.memoryStore)
+--- /home/ubuntu/Downloads/spark-1.6.1/project/MimaExcludes.scala	2016-02-26 23:40:50.000000000 -0500
++++ spark-1.6.1/project/MimaExcludes.scala	2016-07-12 19:15:37.720088842 -0400
+@@ -673,6 +673,9 @@
+         ProblemFilters.exclude[MissingTypesProblem](
+           "org.apache.spark.rdd.PairRDDFunctions")
+       ) ++ Seq(
++        // [SPARK-14437][Core] Use the address that NettyBlockTransferService listens to create BlockManagerId
++        ProblemFilters.exclude[MissingMethodProblem]("org.apache.spark.network.netty.NettyBlockTransferService.this")
++      ) ++ Seq(
+         // SPARK-4062
+         ProblemFilters.exclude[MissingMethodProblem](
+           "org.apache.spark.streaming.kafka.KafkaReceiver#MessageHandler.this")
+diff -Naur -x '*.class' -x '*.iml' -x '*.xml' /home/ubuntu/Downloads/spark-1.6.1/core/src/main/scala/org/apache/spark/network/netty/NettyBlockTransferService.scala spark-1.6.1/core/src/main/scala/org/apache/spark/network/netty/NettyBlockTransferService.scala
+--- /home/ubuntu/Downloads/spark-1.6.1/core/src/main/scala/org/apache/spark/network/netty/NettyBlockTransferService.scala	2016-02-26 23:40:50.000000000 -0500
++++ spark-1.6.1/core/src/main/scala/org/apache/spark/network/netty/NettyBlockTransferService.scala	2016-07-12 15:48:23.000000000 -0400
+@@ -37,7 +37,11 @@
  /**
   * A BlockTransferService that uses Netty to fetch a set of blocks at at time.
   */
--class NettyBlockTransferService(
--    conf: SparkConf, 
--    securityManager: SecurityManager, 
--    override val hostName: String,
--    numCores: Int)
-+class NettyBlockTransferService(conf: SparkConf, securityManager: SecurityManager, numCores: Int)
+-class NettyBlockTransferService(conf: SparkConf, securityManager: SecurityManager, numCores: Int)
++class NettyBlockTransferService(
++    conf: SparkConf, 
++    securityManager: SecurityManager, 
++    override val hostName: String,
++    numCores: Int)
    extends BlockTransferService {
  
    // TODO: Don't use Java serialization, use a more cross-version compatible serialization format.
-@@ -67,13 +63,13 @@
+@@ -63,13 +67,13 @@
      clientFactory = transportContext.createClientFactory(clientBootstrap.toSeq.asJava)
      server = createServer(serverBootstrap.toList)
      appId = conf.getAppId
--    logInfo(s"Server created on ${hostName}:${server.getPort}")
-+    logInfo("Server created on " + server.getPort)
+-    logInfo("Server created on " + server.getPort)
++    logInfo(s"Server created on ${hostName}:${server.getPort}")
    }
  
    /** Creates and binds the TransportServer, possibly trying multiple ports. */
    private def createServer(bootstraps: List[TransportServerBootstrap]): TransportServer = {
      def startService(port: Int): (TransportServer, Int) = {
--      val server = transportContext.createServer(hostName, port, bootstraps.asJava)
-+      val server = transportContext.createServer(port, bootstraps.asJava)
+-      val server = transportContext.createServer(port, bootstraps.asJava)
++      val server = transportContext.createServer(hostName, port, bootstraps.asJava)
        (server, server.getPort)
      }
  
-@@ -111,6 +107,8 @@
+@@ -107,8 +111,6 @@
      }
    }
  
-+  override def hostName: String = Utils.localHostName()
-+
+-  override def hostName: String = Utils.localHostName()
+-
    override def port: Int = server.getPort
  
    override def uploadBlock(
-diff -Naur spark-1.6.1/core/src/main/scala/org/apache/spark/SparkEnv.scala /home/ubuntu/Downloads/spark-1.6.1/core/src/main/scala/org/apache/spark/SparkEnv.scala
---- spark-1.6.1/core/src/main/scala/org/apache/spark/SparkEnv.scala	2016-06-13 15:38:18.513201995 -0400
-+++ /home/ubuntu/Downloads/spark-1.6.1/core/src/main/scala/org/apache/spark/SparkEnv.scala	2016-02-26 23:40:50.000000000 -0500
+diff -Naur -x '*.class' -x '*.iml' -x '*.xml' /home/ubuntu/Downloads/spark-1.6.1/core/src/main/scala/org/apache/spark/SparkEnv.scala spark-1.6.1/core/src/main/scala/org/apache/spark/SparkEnv.scala
+--- /home/ubuntu/Downloads/spark-1.6.1/core/src/main/scala/org/apache/spark/SparkEnv.scala	2016-02-26 23:40:50.000000000 -0500
++++ spark-1.6.1/core/src/main/scala/org/apache/spark/SparkEnv.scala	2016-07-12 15:48:23.000000000 -0400
 @@ -354,7 +354,7 @@
          UnifiedMemoryManager(conf, numUsableCores)
        }
  
--    val blockTransferService = new NettyBlockTransferService(conf, securityManager, hostname, numUsableCores)
-+    val blockTransferService = new NettyBlockTransferService(conf, securityManager, numUsableCores)
+-    val blockTransferService = new NettyBlockTransferService(conf, securityManager, numUsableCores)
++    val blockTransferService = new NettyBlockTransferService(conf, securityManager, hostname, numUsableCores)
  
      val blockManagerMaster = new BlockManagerMaster(registerOrLookupEndpoint(
        BlockManagerMaster.DRIVER_ENDPOINT_NAME,
-diff -Naur spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferSecuritySuite.scala /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferSecuritySuite.scala
---- spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferSecuritySuite.scala	2016-06-13 15:41:42.101197064 -0400
-+++ /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferSecuritySuite.scala	2016-02-26 23:40:50.000000000 -0500
+diff -Naur -x '*.class' -x '*.iml' -x '*.xml' /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferSecuritySuite.scala spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferSecuritySuite.scala
+--- /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferSecuritySuite.scala	2016-02-26 23:40:50.000000000 -0500
++++ spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferSecuritySuite.scala	2016-07-12 16:00:11.000000000 -0400
 @@ -106,11 +106,11 @@
      when(blockManager.getBlockData(blockId)).thenReturn(blockBuffer)
  
      val securityManager0 = new SecurityManager(conf0)
--    val exec0 = new NettyBlockTransferService(conf0, securityManager0, "localhost", numCores = 1)
-+    val exec0 = new NettyBlockTransferService(conf0, securityManager0, numCores = 1)
+-    val exec0 = new NettyBlockTransferService(conf0, securityManager0, numCores = 1)
++    val exec0 = new NettyBlockTransferService(conf0, securityManager0, "localhost", numCores = 1)
      exec0.init(blockManager)
  
      val securityManager1 = new SecurityManager(conf1)
--    val exec1 = new NettyBlockTransferService(conf1, securityManager1, "localhost", numCores = 1)
-+    val exec1 = new NettyBlockTransferService(conf1, securityManager1, numCores = 1)
+-    val exec1 = new NettyBlockTransferService(conf1, securityManager1, numCores = 1)
++    val exec1 = new NettyBlockTransferService(conf1, securityManager1, "localhost", numCores = 1)
      exec1.init(blockManager)
  
      val result = fetchBlock(exec0, exec1, "1", blockId) match {
-diff -Naur spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferServiceSuite.scala /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferServiceSuite.scala
---- spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferServiceSuite.scala	2016-06-13 15:42:11.853196563 -0400
-+++ /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferServiceSuite.scala	2016-02-26 23:40:50.000000000 -0500
+diff -Naur -x '*.class' -x '*.iml' -x '*.xml' /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferServiceSuite.scala spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferServiceSuite.scala
+--- /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferServiceSuite.scala	2016-02-26 23:40:50.000000000 -0500
++++ spark-1.6.1/core/src/test/scala/org/apache/spark/network/netty/NettyBlockTransferServiceSuite.scala	2016-07-12 16:00:11.000000000 -0400
 @@ -75,7 +75,7 @@
        .set("spark.blockManager.port", port.toString)
      val securityManager = new SecurityManager(conf)
      val blockDataManager = mock(classOf[BlockDataManager])
--    val service = new NettyBlockTransferService(conf, securityManager, "localhost", numCores = 1)
-+    val service = new NettyBlockTransferService(conf, securityManager, numCores = 1)
+-    val service = new NettyBlockTransferService(conf, securityManager, numCores = 1)
++    val service = new NettyBlockTransferService(conf, securityManager, "localhost", numCores = 1)
      service.init(blockDataManager)
      service
    }
-diff -Naur spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerReplicationSuite.scala /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerReplicationSuite.scala
---- spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerReplicationSuite.scala	2016-06-13 15:42:43.257196084 -0400
-+++ /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerReplicationSuite.scala	2016-02-26 23:40:50.000000000 -0500
+diff -Naur -x '*.class' -x '*.iml' -x '*.xml' /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerReplicationSuite.scala spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerReplicationSuite.scala
+--- /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerReplicationSuite.scala	2016-02-26 23:40:50.000000000 -0500
++++ spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerReplicationSuite.scala	2016-07-12 16:00:11.000000000 -0400
 @@ -60,7 +60,7 @@
    private def makeBlockManager(
        maxMem: Long,
        name: String = SparkContext.DRIVER_IDENTIFIER): BlockManager = {
--    val transfer = new NettyBlockTransferService(conf, securityMgr, "localhost", numCores = 1)
-+    val transfer = new NettyBlockTransferService(conf, securityMgr, numCores = 1)
+-    val transfer = new NettyBlockTransferService(conf, securityMgr, numCores = 1)
++    val transfer = new NettyBlockTransferService(conf, securityMgr, "localhost", numCores = 1)
      val memManager = new StaticMemoryManager(conf, Long.MaxValue, maxMem, numCores = 1)
      val store = new BlockManager(name, rpcEnv, master, serializer, conf,
        memManager, mapOutputTracker, shuffleManager, transfer, securityMgr, 0)
-diff -Naur spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerSuite.scala /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerSuite.scala
---- spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerSuite.scala	2016-06-13 15:46:55.217193810 -0400
-+++ /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerSuite.scala	2016-02-26 23:40:50.000000000 -0500
+diff -Naur -x '*.class' -x '*.iml' -x '*.xml' /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerSuite.scala spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerSuite.scala
+--- /home/ubuntu/Downloads/spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerSuite.scala	2016-02-26 23:40:50.000000000 -0500
++++ spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManagerSuite.scala	2016-07-12 16:00:11.000000000 -0400
 @@ -67,7 +67,7 @@
    private def makeBlockManager(
        maxMem: Long,
        name: String = SparkContext.DRIVER_IDENTIFIER): BlockManager = {
--    val transfer = new NettyBlockTransferService(conf, securityMgr, "localhost", numCores = 1)
-+    val transfer = new NettyBlockTransferService(conf, securityMgr, numCores = 1)
+-    val transfer = new NettyBlockTransferService(conf, securityMgr, numCores = 1)
++    val transfer = new NettyBlockTransferService(conf, securityMgr, "localhost", numCores = 1)
      val memManager = new StaticMemoryManager(conf, Long.MaxValue, maxMem, numCores = 1)
      val blockManager = new BlockManager(name, rpcEnv, master, serializer, conf,
        memManager, mapOutputTracker, shuffleManager, transfer, securityMgr, 0)
@@ -108,8 +132,8 @@ diff -Naur spark-1.6.1/core/src/test/scala/org/apache/spark/storage/BlockManager
  
    test("block store put failure") {
      // Use Java serializer so we can create an unserializable error.
--    val transfer = new NettyBlockTransferService(conf, securityMgr, "localhost", numCores = 1)
-+    val transfer = new NettyBlockTransferService(conf, securityMgr, numCores = 1)
+-    val transfer = new NettyBlockTransferService(conf, securityMgr, numCores = 1)
++    val transfer = new NettyBlockTransferService(conf, securityMgr, "localhost", numCores = 1)
      val memoryManager = new StaticMemoryManager(
        conf,
        maxOnHeapExecutionMemory = Long.MaxValue,
