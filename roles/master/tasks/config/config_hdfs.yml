@@ -28,7 +28,7 @@
         dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/mapred-site.xml
 
 - name: Update yarn-site.xml
-  copy: src='{{ inventory_dir }}/roles/master/templates/hadoop/yarn-site.j2' 
+  template: src='{{ inventory_dir }}/roles/master/templates/hadoop/yarn-site.j2' 
         dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/yarn-site.xml
 
 - name: Update slaves
