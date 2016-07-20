@@ -16,11 +16,12 @@
   #  - 'hive-1.2.1'
 
 - name: Sync configurations and source code
-  command: 'rsync -az --exclude logs --exclude .git {{ groups.master[0] }}:/home/ubuntu/{{ item }} /home/ubuntu'
+  shell: 'rsync -az --exclude logs --exclude .git {{ groups.master[0] }}:/home/ubuntu/{{ item }} /home/ubuntu'
   with_items:
     - 'spark-1.6.1'
     - 'hadoop-2.6.4'
     - 'hive-1.2.1'
+  async: 45
 
 #- name: Sync HDFS source code and configuration from the master
 #  synchronize:
