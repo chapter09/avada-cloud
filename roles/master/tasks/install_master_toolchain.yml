@@ -3,7 +3,7 @@
 # This Playbook builds Spark, Hive and HDFS on Master Node
 
 - name: Git clone benchmark
-  git: repo=git@github.com:chapter09/bdbench_spark_sql.git 
+  git: repo=git@github.com:chapter09/avada-bench.git
        dest=/home/ubuntu/bdbench_spark_sql
        accept_hostkey=yes
   ignore_errors: yes
@@ -16,3 +16,8 @@
   apt: name=ansible
   become: yes
 
+- name: Git clone benchmark
+  git: repo=git@github.com:chapter09/avada-ML.git
+       dest=/home/ubuntu/avada-ML
+       accept_hostkey=yes
+  ignore_errors: yes
