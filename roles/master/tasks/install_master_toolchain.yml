@@ -12,6 +12,10 @@
   apt_repository: repo='ppa:ansible/ansible'
   become: yes
 
+- name: Install the python-redis
+  apt: name=python-redis
+  become: yes
+
 - name: Install the latest Ansible
   apt: name=ansible
   become: yes
