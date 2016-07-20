@@ -9,6 +9,10 @@
     - name: Update configuration file
       include: "{{ inventory_dir }}/roles/master/tasks/config.yml"
 
+    - name: Copy hosts file to master
+      copy: src=../../hosts
+            dest=/home/ubuntu/
+
 - hosts: worker
   remote_user: ubuntu
   gather_facts: no 
@@ -19,28 +23,28 @@
 - hosts: all
   remote_user: ubuntu
   tasks:
-    #- name: Mount /dev/xvdf /mnt
-    #  mount: name=/mnt/ src=/dev/xvdf fstype=ext4 state=mounted
-    #  become: yes
-    #  when: init is undefined
+   #- name: Mount /dev/xvdf /mnt
+   #  mount: name=/mnt/ src=/dev/xvdf fstype=ext4 state=mounted
+   #  become: yes
+   #  when: init is undefined
 
-    - name: Enforce HDFS hostname for each node
-      lineinfile: dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/hdfs-site.xml 
-                  insertafter='dfs.datanode.hostname'
-                  line='    <value>{{ inventory_hostname }}</value>' 
-                  state=present
+   - name: Enforce HDFS hostname for each node
+     lineinfile: dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/hdfs-site.xml 
+                 insertafter='dfs.datanode.hostname'
+                 line='    <value>{{ inventory_hostname }}</value>' 
+                 state=present
 
-    #- name: Enforce YARN nodemanger hostname for each node 
-    #  lineinfile: dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/yarn-site.xml 
-    #              insertafter='yarn.nodemanager.hostname'
-    #              line='    <value>{{ inventory_hostname }}</value>' 
-    #              state=present
+   #- name: Enforce YARN nodemanger hostname for each node 
+   #  lineinfile: dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/yarn-site.xml 
+   #              insertafter='yarn.nodemanager.hostname'
+   #              line='    <value>{{ inventory_hostname }}</value>' 
+   #              state=present
 
-    #- name: Enforce YARN timeline-service hostname for each node
-    #  lineinfile: dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/yarn-site.xml 
-    #              insertafter='yarn.timeline-service.hostname'
-    #              line='    <value>{{ inventory_hostname }}</value>' 
-    #              state=present
+   #- name: Enforce YARN timeline-service hostname for each node
+   #  lineinfile: dest=/home/ubuntu/hadoop-2.6.4/etc/hadoop/yarn-site.xml 
+   #              insertafter='yarn.timeline-service.hostname'
+   #              line='    <value>{{ inventory_hostname }}</value>' 
+   #              state=present
 
 - hosts: master
   remote_user: ubuntu
