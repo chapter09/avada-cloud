@@ -18,6 +18,14 @@
   apt: name=git
   become: yes
 
+- name: Install redis-server
+  apt: name=redis-server
+  become: yes
+
+- name: Install redis-tools
+  apt: name=redis-tools
+  become: yes
+
 - name: Create the Downloads directory for all machines
   file: path=/home/ubuntu/Downloads state=directory mode=0755 owner=ubuntu
 
