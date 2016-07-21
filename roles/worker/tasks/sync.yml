@@ -2,14 +2,15 @@
 ---
 # This Playbook is used to deploy Spark, Hive and HDFS worker node
 
-#- name: Sync Spark source code and configuration from the master
-#  synchronize:
-#    src: '/home/ubuntu/spark-1.6.1'
-#    dest: /home/ubuntu/
-#    rsync_opts:
-#      - "--exclude=.git"
-#      - "--exclude=logs"
-#  delegate_to: "{{ groups.master[0] }}"
+- name: Sync Spark source code and configuration from the master
+  synchronize:
+    src: '/home/ubuntu/spark-1.6.1'
+    dest: '/home/ubuntu/'
+    checksum: yes
+    rsync_opts:
+      - "--exclude=.git"
+      - "--exclude=logs"
+  delegate_to: "{{ groups.master[0] }}"
   #with_items:
   #  - 'spark-1.6.1'
   #  - 'hadoop-2.6.4'
@@ -18,7 +19,7 @@
 - name: Sync configurations and source code
   shell: 'rsync -az --exclude logs --exclude .git {{ groups.master[0] }}:/home/ubuntu/{{ item }} /home/ubuntu'
   with_items:
-    - 'spark-1.6.1'
+    #- 'spark-1.6.1'
     - 'hadoop-2.6.4'
     - 'hive-1.2.1'
   async: 45
