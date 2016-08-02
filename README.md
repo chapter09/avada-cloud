@@ -1,5 +1,3 @@
-{:toc}
-
 #avada-playbook
 Ansible playbook for Project Avada
 
@@ -132,6 +130,4 @@ in `ansible.cfg`:
     [ssh_connection]
     control_path = /tmp/%%h-%%r
     
-
-
 
