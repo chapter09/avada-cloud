@@ -1,3 +1,5 @@
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+
 #avada-playbook
 Ansible playbook for Project Avada
 
