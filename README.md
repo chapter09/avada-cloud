@@ -1,4 +1,4 @@
-[TOC]
+{:toc}
 
 #avada-playbook
 Ansible playbook for Project Avada
