@@ -72,9 +72,9 @@ Master instance will be always placed at:
 
 #### 0.3 Todo
 
-[] To support adding worker nodes incrementally to the existing cluster.
-[] Promote the speed of ansible playbook, e.g., introduce `async`.
-[] Bug: `cluster_start.yml` might have `rsync` failures.
+- [ ] To support adding worker nodes incrementally to the existing cluster.
+- [ ] Promote the speed of ansible playbook, e.g., introduce `async`.
+- [ ] Bug: `cluster_start.yml` might have `rsync` failures.
 
 ### 1. AWS EC2 Initialization
 
