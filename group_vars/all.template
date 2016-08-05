@@ -1,6 +1,7 @@
 # vim:ft=ansible:
 ---
 
+user: ubuntu
 keypair: hao-savi-rsa
 security_group: hao
 instance_type: m4.2xlarge

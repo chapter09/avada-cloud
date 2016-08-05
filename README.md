@@ -76,6 +76,7 @@ Master instance will be always placed at:
 - [ ] Promote the speed of ansible playbook, e.g., introduce `async`.
 - [ ] Bug: `cluster_start.yml` might have `rsync` failures.
 - [ ] Support YARN for multiple regions.
+- [ ] Relax hardcode username `ubuntu` to `{{ user }}`.
 
 ### 1. AWS EC2 Initialization
 
