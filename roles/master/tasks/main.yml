@@ -2,8 +2,8 @@
 ---
 # This Playbook builds Spark, Hive and HDFS on Master Node
 
-- name: Copy Spark, HDFS and Hive code base to Master Node
-  unarchive: src='{{ inventory_dir }}/roles/master/files/spark_hdfs_hive.tar.gz' dest=/home/ubuntu/
+#- name: Copy Spark, HDFS and Hive code base to Master Node
+#  unarchive: src='{{ inventory_dir }}/roles/master/files/spark_hdfs_hive.tar.gz' dest=/home/ubuntu/
 
 - name: Install toolchain for Master Node
   include: install_master_toolchain.yml
