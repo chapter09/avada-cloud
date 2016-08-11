@@ -3,11 +3,7 @@
 # This Playbook will install all basic tools on all machines
 
 - name: Init locale for new instance
-  apt: name=language-pack-en
-  become: yes
-
-- name: Update apt repo
-  apt: update_cache=yes
+  apt: name=language-pack-en update_cache=yes
   become: yes
 
 - name: Install htop
