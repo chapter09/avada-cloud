@@ -104,7 +104,7 @@ host_key_checking = False
 
 # if set, always use this private key file for authentication, same as
 # if passing --private-key to ansible or ansible-playbook
-#private_key_file = /path/to/file
+# private_key_file = /Users/wanghao/.ssh/id_rsa_savi
 
 # If set, configures the path to the Vault password file as an alternative to
 # specifying --vault-password-file on the command line.
@@ -274,7 +274,7 @@ retry_files_enabled = False
 # ssh arguments to use
 # Leaving off ControlPersist will result in poor performance, so use
 # paramiko on older platforms rather than removing it
-# ssh_args = -o ControlMaster=auto -o ControlPersist=60s StrictHostKeyChecking=no
+# ssh_args = -o ControlMaster=auto -o ControlPersist=61s StrictHostKeyChecking=no
 
 # The path to use for the ControlPath sockets. This defaults to
 # "%(directory)s/ansible-ssh-%%h-%%p-%%r", however on some systems with

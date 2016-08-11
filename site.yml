@@ -3,17 +3,17 @@
 # This Playbook will deploy the whole Spark + Hive + HDFF on the cluster
 
 - hosts: all
-  remote_user: {{ user }}
+  remote_user: '{{ user }}'
   roles:
     - role: common
 
-- hosts: master
-  remote_user: {{ user }}
-  roles:
-    - role: master
+#- hosts: master
+#  remote_user: {{ user }}
+#  roles:
+#    - role: master
 
-- hosts: worker
-  remote_user: {{ user }}
-  roles:
-    - role: worker
+#- hosts: worker
+#  remote_user: {{ user }}
+#  roles:
+#    - role: worker
 
