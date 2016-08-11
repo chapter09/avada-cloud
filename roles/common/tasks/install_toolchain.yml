@@ -56,8 +56,8 @@
   file: path=/home/ubuntu/jvmtop state=directory mode=0755 owner=ubuntu
 
 - name: Download JvmTop
-  get_url: url=https://github.com/patric-r/jvmtop/releases/download/0.8.0/jvmtop-0.8.0.tar.gz 
-           dest=/home/ubuntu/Downloads
+  shell: wget -c https://github.com/patric-r/jvmtop/releases/download/0.8.0/jvmtop-0.8.0.tar.gz 
+         chdir=/home/ubuntu/Downloads
 
 - name: Extract JvmTop
   unarchive: copy=no 
